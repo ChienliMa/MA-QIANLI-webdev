@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Websites</title>
+
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
     <meta charset="UTF-8">
-    <title>Websites</title>
+
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <script tpye="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <link href="css/style.css" rel="stylesheet"/>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="app.js"></script>
 
+    <link href="css/style.css" rel="stylesheet"/>
 </head>
 
 
-<body>
+<body ng-app="myApp">
+
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <div class="navbar-brand">
-                <span class="glyphicon glyphicon-chevron-left">
-                    <a href="profile.html"></a>
-                </span>
-                <span class="" href="profile.html">Websites</span>
+                <a class="glyphicon glyphicon-chevron-left" href="profile.html"></a>
+                Website
             </div>
 
             <a class="navbar-brand pull-right" href="website-new.html">
@@ -31,12 +36,12 @@
     </div>
 </nav>
 
-<div class="container">
+
+<div class="container" ng-controller="WebsiteController">
     <ul class="list-group">
-        <!--do a for-each here-->
-        <a class="list-group-item">
-            balablaboom
-            <span class="tag tag-default tag-pill pull-xs-right">14</span>
+        <a class="list-group-item" ng-repeat="website in websites" >
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+            {{website.name}}
         </a>
     </ul>
 </div>

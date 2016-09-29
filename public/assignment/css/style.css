@@ -17,3 +17,7 @@ body {
 .icon-default {
     color: rgba(244, 247, 249, 0.99);
 }
+
+a {
+    color: inherit;
+}
