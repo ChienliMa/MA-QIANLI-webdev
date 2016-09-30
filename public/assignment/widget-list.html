@@ -37,7 +37,7 @@
    <div ng-repeat="widget in widgets">
        <div class="container">
            <div  class="widget-cog-pannel">
-               <a class="widget-icon glyphicon glyphicon-cog" ></a>
+               <a class="widget-icon glyphicon glyphicon-cog" ng-href="widget-{{widget.type}}.html"></a>
                <a class="widget-icon glyphicon glyphicon-menu-hamburger" ></a>
            </div>
 
@@ -52,8 +52,6 @@
            <div ng-if="widget.type == TYPE.YOUTUBE">
                <iframe class="widget-youtube" ng-src="{{widget.content | trustUrl}}" allowfullscreen></iframe>
            </div>
-
-
 
        </div>
    </div>

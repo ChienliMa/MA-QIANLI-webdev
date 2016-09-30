@@ -35,10 +35,10 @@
 
 <div class="container" ng-controller="PageController">
     <ul class="list-group">
-        <a class="list-group-item" ng-repeat="page in pages"  href="widget-list.html">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-            {{page.name}}
-        </a>
+        <div class="list-group-item" ng-repeat="page in pages" >
+            <a href="widget-list.html">{{page.name}}</a>
+            <a class="glyphicon glyphicon-cog pull-right" href="page-edit.html"></a>
+        </div>
     </ul>
 </div>
 
