@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Page List</title>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
@@ -35,8 +35,8 @@
 
 <div class="container" ng-controller="PageController">
     <ul class="list-group">
-        <div class="list-group-item" ng-repeat="page in pages" >
-            <a href="widget-list.html">{{page.name}}</a>
+        <div class="list-group-item" ng-repeat="page in pages">
+            <a href="widget-list.html" style="width:90%; display:inline-flex;">{{page.name}}</a>
             <a class="glyphicon glyphicon-cog pull-right" href="page-edit.html"></a>
         </div>
     </ul>
