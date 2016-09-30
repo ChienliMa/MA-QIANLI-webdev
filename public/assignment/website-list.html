@@ -13,7 +13,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="app.js"></script>
 
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/website-style.css" rel="stylesheet"/>
 </head>
 
 
@@ -39,7 +39,7 @@
 
 <div class="container" ng-controller="WebsiteController">
     <ul class="list-group">
-        <a class="list-group-item" ng-repeat="website in websites" >
+        <a class="list-group-item" ng-repeat="website in websites"  href="page-list.html">
             <span class="glyphicon glyphicon-cog pull-right"></span>
             {{website.name}}
         </a>
@@ -47,9 +47,9 @@
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <!--<div class="container">-->
-        <!--<a class="navbar-link navbar-right pull-right glyphicon glyphicon-user" href="profile.html"/>-->
-    <!--</div>-->
+    <div class="container－fluid">
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="profile.html"></a>
+    </div>
 </nav>
 
 </body>

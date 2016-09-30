@@ -1,0 +1,23 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 60px;
+}
+
+.navbar-default {
+    background-color: rgba(244, 255, 240, 0.17);
+}
+
+.navbar-default .navbar-brand {
+    color: rgba(24, 24, 24, 0.91);
+}
+
+.icon-default {
+    color: rgba(10, 10, 10, 0.99);
+}
+
+a {
+    color: inherit;
+}
