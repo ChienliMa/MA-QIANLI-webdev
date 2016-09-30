@@ -24,13 +24,16 @@ a {
 }
 
 .splited-container {
-    overflow: hidden;
+    /*overflow: hidden;*/
+    height:100%
 }
 .splited-right-panel {
     overflow: hidden;
     padding-left: 10px;
 }
 .splited-left-panel {
+    overflow-y: scroll;
+
     float: left;
     width: 30%;
     padding-right: 10px;
