@@ -26,7 +26,12 @@
     });
 
     myApp.controller('WidgetController', function($scope) {
-        $scope.TYPE = {HEADING:"heading", IMAGE:"image", YOUTUBE:"youtube"}
+        $scope.TYPE = {HEADING:"heading", IMAGE:"image", YOUTUBE:"youtube"};
+
+        $scope.HEADING_MEM = ["Name", "Text", "Size"];
+        $scope.IMAGE_MEM = ["Name", "Text", "URL", "Width"];
+        $scope.YOUTUBE_MEM = ["Name", "Text", "URL", "Width"];
+
         $scope.widgets = [{"type":$scope.TYPE.HEADING, "name":"heading", "content":"HELLO WORLD!"},
                          {"type":$scope.TYPE.IMAGE, "name":"hello world", "content":"http://browningit.com/wp-content/uploads/2015/09/helloworld.gif"},
                          {"type":$scope.TYPE.YOUTUBE, "name":"PPAP", "content":"https://www.youtube.com/embed/yygpgCFJFnA?html5=1"}];

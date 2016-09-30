@@ -18,8 +18,13 @@ body {
     color: rgba(10, 10, 10, 0.99);
 }
 
-a {
-    color: inherit;
+.list-group-item {
+    color: red;
+    font-color: #447fff;
+}
+
+.upload-div{
+    border-color: black;
 }
 
 .widget-image{

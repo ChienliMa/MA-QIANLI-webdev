@@ -15,6 +15,7 @@
 
     <link href="css/widget-style.css" rel="stylesheet"/>
 </head>
+
 <body ng-app="myApp" ng-controller="WidgetController">
 
 
@@ -30,8 +31,8 @@
 
 <div class="container">
     <ul class="list-group">
-        <a class="list-group-item" ng-repeat="type in TYPE"  ng-href="widge-{{type}}.html">
-            {{type}}
+        <a class="list-group-item" ng-repeat="type in TYPE"  ng-href="widget-{{type}}.html">
+            <font color="#6495ed">{{type}}</font>
         </a>
     </ul>
 </div>
