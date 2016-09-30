@@ -22,3 +22,17 @@ body {
 a {
     color: inherit;
 }
+
+.splited-container {
+    overflow: hidden;
+}
+.splited-right-panel {
+    overflow: hidden;
+    padding-left: 10px;
+}
+.splited-left-panel {
+    float: left;
+    width: 30%;
+    padding-right: 10px;
+
+}

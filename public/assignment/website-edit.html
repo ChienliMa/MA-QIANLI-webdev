@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>New Websites</title>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
     <meta charset="UTF-8">
-    <title>New Websites</title>
+
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <script tpye="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="app.js"></script>
+
     <link href="css/website-style.css" rel="stylesheet"/>
 </head>
-<body>
 
 
+<body ng-app="myApp" ng-controller="WebsiteController">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,19 +33,31 @@
 </nav>
 
 
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control" id="name" placeholder="Your App Name">
+<div class="container-fluid">
+    <div class="splited-container">
+        <div class="clearfix visible-sm-block splited-left-panel" >
+            <ul class="list-group">
+                <div class="list-group-item" ng-repeat="website in websites" >
+                    <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+                    <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
+                </div>
+            </ul>
         </div>
-        <div class="form-group">
-            <label for="desc">Description</label>
-            <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
-        </div>
-        <a class="btn btn-danger  btn-block" href="website-list.html">delete</a>
-    </form>
 
+        <div class="splited-right-panel" >
+            <form>
+                <div class="form-group">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your App Name">
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
+                </div>
+                <a class="btn btn-danger  btn-block" href="website-list.html">delete</a>
+            </form>
+        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

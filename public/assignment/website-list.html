@@ -17,10 +17,7 @@
 </head>
 
 
-<body ng-app="myApp">
-
-
-
+<body ng-app="myApp" ng-controller="WebsiteController">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -37,7 +34,7 @@
 </nav>
 
 
-<div class="container" ng-controller="WebsiteController">
+<div class="container">
     <ul class="list-group">
         <div class="list-group-item" ng-repeat="website in websites" >
             <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
