@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Add Widget</title>
+
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
     <meta charset="UTF-8">
-    <title>New Websites</title>
+
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <script tpye="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="app.js"></script>
+
     <link href="css/widget-style.css" rel="stylesheet"/>
 </head>
-<body>
+<body ng-app="myApp" ng-controller="WidgetController">
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">
-                <a class="glyphicon glyphicon-chevron-left" href="page-list.html"></a>
-                Edit Page
-            </div>
-
-            <a class="navbar-brand pull-right" href="page-list.html">
-                <span class="glyphicon glyphicon-floppy-disk icon-default"></span>
-            </a>
+        <div class="navbar-header navbar-brand">
+            <a class="glyphicon glyphicon-chevron-left" href="widget-list.html"></a>
+            Add Widget
         </div>
     </div>
 </nav>
 
 
 <div class="container">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Your page name">
-
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="Your page name">
-    <a class="btn btn-danger  btn-block" href="login.html">delete</a>
+    <ul class="list-group">
+        <a class="list-group-item" ng-repeat="type in TYPE"  ng-href="widge-{{type}}.html">
+            {{type}}
+        </a>
+    </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

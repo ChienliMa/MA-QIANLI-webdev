@@ -26,7 +26,7 @@
     });
 
     myApp.controller('WidgetController', function($scope) {
-        $scope.TYPE = {HEADING:0, IMAGE:1, YOUTUBE:2}
+        $scope.TYPE = {HEADING:"heading", IMAGE:"image", YOUTUBE:"youtube"}
         $scope.widgets = [{"type":$scope.TYPE.HEADING, "name":"heading", "content":"HELLO WORLD!"},
                          {"type":$scope.TYPE.IMAGE, "name":"hello world", "content":"http://browningit.com/wp-content/uploads/2015/09/helloworld.gif"},
                          {"type":$scope.TYPE.YOUTUBE, "name":"PPAP", "content":"https://www.youtube.com/embed/yygpgCFJFnA?html5=1"}];
