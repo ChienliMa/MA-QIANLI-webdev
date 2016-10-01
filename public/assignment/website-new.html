@@ -19,27 +19,53 @@
 <body ng-app="myApp" ng-controller="WebsiteController">
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">
+    <div class="row">
+        <div class="col-md-4 visible-md-block">
+            <div class="navbar-header navbar-brand">
                 <a class="glyphicon glyphicon-chevron-left" href="website-list.html"></a>
+                Websites
+            </div>
+            <a class="navbar-header navbar-brand pull-right" href="website-list.html">
+                <span class="glyphicon glyphicon-plus icon-default"></span>
+            </a>
+        </div>
+
+        <div class="col-md-8">
+            <div class="navbar-brand">
+                <a class="glyphicon glyphicon-chevron-left hidden-md" href="website-list.html"></a>
                 New Website
             </div>
 
-            <a class="navbar-brand pull-right" href="website-list.html"  ng-click="addWebsite(website)">
-                <span class="glyphicon glyphicon-floppy-disk icon-default"></span>
+            <a class="navbar-brand pull-right" href="website-list.html">
+                <span class="glyphicon glyphicon-ok icon-default"></span>
             </a>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <label for="name">name</label>
-    <input ng-model="website.name" type="text" class="form-control" id="name" placeholder="Your App Name">
-
-    <label for="desc">Description</label>
-    <textarea ng-model="website.desc" type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 visible-md-block">
+            <ul class="list-group">
+                <div class="list-group-item" ng-repeat="website in websites" >
+                    <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+                    <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
+                </div>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <form>
+                <div class="form-group">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your App Name">
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

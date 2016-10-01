@@ -20,21 +20,19 @@
 <body ng-app="myApp" ng-controller="WebsiteController">
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">
-                <a class="glyphicon glyphicon-chevron-left" href="profile.html"></a>
-                Website
-            </div>
-
-            <a class="navbar-brand pull-right" href="website-new.html">
-                <span class="glyphicon glyphicon-plus icon-default"></span>
-            </a>
+        <div class="navbar-brand">
+            <a class="glyphicon glyphicon-chevron-left" href="profile.html"></a>
+            Website
         </div>
+
+        <a class="navbar-brand pull-right" href="website-new.html">
+            <span class="glyphicon glyphicon-plus icon-default"></span>
+        </a>
     </div>
 </nav>
 
 
-<div class="container">
+<div class="container-fluid">
     <ul class="list-group">
         <div class="list-group-item" ng-repeat="website in websites" >
             <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
