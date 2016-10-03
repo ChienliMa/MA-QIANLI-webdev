@@ -23,15 +23,6 @@ a {
     color: inherit;
 }
 
-.left-select-panel{
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    margin-top: 65px;
-    margin-bottom: 65px;
-    overflow: scroll;
-}
-
 .v-divider{
     height:100%;
     border-left:1px solid gray;

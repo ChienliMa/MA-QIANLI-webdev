@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row">
-        <div class="col-md-4 visible-md-block">
+        <div class="col-md-4 visible-md-block" style="padding-right: 0px;">
             <div class="navbar-header navbar-brand">
                 <a class="glyphicon glyphicon-chevron-left" href="website-list.html"></a>
                 Websites
@@ -43,28 +43,26 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 visible-md-block left-select-panel">
-            <ul class="list-group">
-                <div class="list-group-item" ng-repeat="website in websites" >
-                    <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
-                    <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
-                </div>
-            </ul>
-        </div>
-        <div class="col-md-8 pull-right">
-            <form>
-                <div class="form-group">
-                    <label for="name">name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your App Name">
-                </div>
-                <div class="form-group">
-                    <label for="desc">Description</label>
-                    <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
-                </div>
-            </form>
-        </div>
+<div class="container-fluid row" style="overflow: hidden; height: calc(100vh - 130px);  display: flex; flex-grow: 1;" >
+    <div class="col-md-4 visible-md-block" style="height: auto; overflow: auto; flex: 1;">
+        <ul class="list-group">
+            <div class="list-group-item" ng-repeat="website in websites" >
+                <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+                <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
+            </div>
+        </ul>
+    </div>
+    <div class="col-md-8" style="flex:2;">
+        <form>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your App Name">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
+            </div>
+        </form>
     </div>
 </div>
 
