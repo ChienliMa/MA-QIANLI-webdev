@@ -25,7 +25,7 @@
                 <a class="glyphicon glyphicon-chevron-left" href="website-list.html"></a>
                 Websites
             </div>
-            <a class="navbar-header navbar-brand pull-right" href="website-list.html">
+            <a class="navbar-header navbar-brand pull-right" href="website-new.html">
                 <span class="glyphicon glyphicon-plus icon-default"></span>
             </a>
         </div>
@@ -45,7 +45,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 visible-md-block">
+        <div class="col-md-4 visible-md-block left-select-panel">
             <ul class="list-group">
                 <div class="list-group-item" ng-repeat="website in websites" >
                     <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
@@ -53,7 +53,7 @@
                 </div>
             </ul>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 pull-right">
             <form>
                 <div class="form-group">
                     <label for="name">name</label>

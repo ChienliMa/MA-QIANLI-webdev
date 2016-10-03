@@ -24,7 +24,7 @@
                 <a class="glyphicon glyphicon-chevron-left" href="website-list.html"></a>
                 Websites
             </div>
-            <a class="navbar-header navbar-brand pull-right" href="website-list.html">
+            <a class="navbar-header navbar-brand pull-right" href="website-new.html">
                 <span class="glyphicon glyphicon-plus icon-default"></span>
             </a>
         </div>
@@ -43,30 +43,28 @@
 </nav>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 visible-md-block">
-            <ul class="list-group">
-                <div class="list-group-item" ng-repeat="website in websites" >
-                    <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
-                    <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
-                </div>
-            </ul>
-        </div>
+<div class="row container-fluid">
+    <div class="col-md-4 visible-md-block left-select-panel">
+        <ul class="list-group">
+            <div class="list-group-item" ng-repeat="website in websites" >
+                <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+                <a class="glyphicon glyphicon-cog pull-right" href="website-edit.html"></a>
+            </div>
+        </ul>
+    </div>
 
-        <div class="col-md-8">
-            <form>
-                <div class="form-group">
-                    <label for="name">name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your App Name">
-                </div>
-                <div class="form-group">
-                    <label for="desc">Description</label>
-                    <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
-                </div>
-                <a class="btn btn-danger  btn-block" href="website-list.html">delete</a>
-            </form>
-        </div>
+    <div class="col-md-8 pull-right">
+        <form>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your App Name">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
+            </div>
+            <a class="btn btn-danger  btn-block" href="website-list.html">delete</a>
+        </form>
     </div>
 </div>
 
