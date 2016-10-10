@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
     <meta charset="UTF-8">
-    <title>Assignment Home Page</title>
+
+    <title>WEB APP</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
 </head>
 <body>
-    <h1>Assignment Home Page</h1>
-    <h1><a href="login.html">direct to login page</a></h1>
+    <div class="ng-view"></div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 (function(angular) {
     'use strict';
-    var myApp = angular.module('myApp', []);
+    var myApp = angular.module('myApp', ["ngRoute"]);
 
     myApp.filter("trustUrl", ['$sce', function ($sce) {
         return function (recordingUrl) {
