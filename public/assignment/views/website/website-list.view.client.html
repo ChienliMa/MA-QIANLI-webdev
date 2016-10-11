@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <a class="glyphicon glyphicon-chevron-left" href="profile.html"></a>
+            Website
+        </div>
+
+        <a class="navbar-brand pull-right" href="#/user/0/website/new">
+            <span class="glyphicon glyphicon-plus icon-default"></span>
+        </a>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <div class="list-group-item" ng-repeat="website in websites" >
+            <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+            <a class="glyphicon glyphicon-cog pull-right" href="website-edit.view.client.html"></a>
+        </div>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container－fluid">
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="#/user/0"></a>
+    </div>
+</nav>

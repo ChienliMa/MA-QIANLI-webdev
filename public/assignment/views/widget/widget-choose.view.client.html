@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header navbar-brand">
+            <a class="glyphicon glyphicon-chevron-left" href="widget-list.html"></a>
+            Add Widget
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <ul class="list-group">
+        <a class="list-group-item" ng-repeat="type in TYPE"  ng-href="widget-{{type}}.html">
+            <font color="#6495ed">{{type}}</font>
+        </a>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container－fluid">
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="profile.html"></a>
+    </div>
+</nav>
