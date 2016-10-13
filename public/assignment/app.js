@@ -4,7 +4,7 @@
 
 (function(angular) {
     'use strict';
-    var myApp = angular.module('myApp', ["ngRoute"]);
+    var myApp = angular.module('myApp', ["ngRoute", "angularCSS"]);
 
     myApp.filter("trustUrl", ['$sce', function ($sce) {
         return function (recordingUrl) {
@@ -12,20 +12,54 @@
         };
     }]);
 
-    myApp.controller('WebsiteController', function($scope) {
+    myApp.controller('UserController', ['$scope','$location', "UserService",function($scope, $location, UserService) {
+        $scope.id = "";
+        $scope.pwd = "";
+        $scope.cfpwd = "";
+
+        $scope.login = function(){
+            if(!UserService.login($scope.id, $scope.pwd)){
+                alert("Username&Password pair not found.");
+            } else {
+                $location.path("/user/"+$scope.id);
+            }
+        };
+
+        $scope.register = function(){
+            if(!UserService.login(id, pwd)){
+                alert("Occupied username.");
+            } else {
+                $location.path("/login");
+            }
+        };
+    }]);
+
+    myApp.controller('WebsiteController', ['$scope','$routeParams', function($scope, $routeParams) {
+        var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
+        var pid = $routeParams.pid;
+
         $scope.websites= [{"name":"spotify", "desc":""},{"name":"spotify", "desc":""},{"name":"spotify", "desc":""},{"name":"spotify", "desc":""},{"name":"spotify", "desc":""},
                             {"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},{"name":"medude", "desc":""},
                             {"name":"dwidder", "desc":""}];
 
-    });
+    }]);
 
-    myApp.controller('PageController', function($scope) {
+    myApp.controller('PageController', ['$scope','$routeParams', function($scope, $routeParams) {
+        var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
+        var pid = $routeParams.pid;
+
         $scope.pages= [{"name":"Onepage", "title":""},
             {"name":"Mypage", "title":""},
             {"name":"Yourpage", "title":""}];
-    });
+    }]);
 
-    myApp.controller('WidgetController', function($scope) {
+    myApp.controller('WidgetController', ['$scope','$routeParams', function($scope, $routeParams) {
+        var uid = $routeParams.uid;
+        var wid = $routeParams.wid;
+        var pid = $routeParams.pid;
+
         $scope.TYPE = {HEADING:"heading", IMAGE:"image", YOUTUBE:"youtube"};
 
         $scope.HEADING_MEM = ["Name", "Text", "Size"];
@@ -35,5 +69,5 @@
         $scope.widgets = [{"type":$scope.TYPE.HEADING, "name":"heading", "content":"HELLO WORLD!"},
                          {"type":$scope.TYPE.IMAGE, "name":"hello world", "content":"http://browningit.com/wp-content/uploads/2015/09/helloworld.gif"},
                          {"type":$scope.TYPE.YOUTUBE, "name":"PPAP", "content":"https://www.youtube.com/embed/yygpgCFJFnA?html5=1"}];
-    });
+    }]);
 })(window.angular);
