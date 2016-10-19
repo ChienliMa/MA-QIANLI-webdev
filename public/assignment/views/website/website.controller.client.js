@@ -12,12 +12,12 @@
     };
 
     myApp.controller("NewWebsiteController", NewWebsiteController);
-    var WebsiteListController = function($scope, $routeParams){
+    var NewWebsiteController = function($scope, $routeParams){
 
     };
 
     myApp.controller("EditWebsiteController", EditWebsiteController);
-    var WebsiteListController = function($scope, $routeParams){
+    var EditWebsiteController = function($scope, $routeParams){
 
     };
 })(window.angular);

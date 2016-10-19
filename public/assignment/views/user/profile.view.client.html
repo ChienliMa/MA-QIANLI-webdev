@@ -5,11 +5,9 @@
                 Profile
             </a>
 
-            <a class="navbar-brand pull-right" href="#/user/0">
-                <span class="glyphicon glyphicon-ok icon-default"></span>
-            </a>
-
-            <!-- todo: switch between view and edit mode -->
+        <a class="navbar-brand pull-right" href="#/user/0" ng-click="update();">
+            <span class="glyphicon glyphicon-ok icon-default"></span>
+        </a>
     </div>
 </nav>
 
@@ -36,7 +34,8 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="#/user/0/website">Websites</a>
+       ng-href="#/user/{{model.user._id}}/website">Websites</a>
+
     <a class="btn btn-danger  btn-block"
        href="#/login">Logout</a>
 </div>

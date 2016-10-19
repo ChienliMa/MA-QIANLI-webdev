@@ -5,7 +5,7 @@
     angular.module("myApp").config(Config);
 
     var routes = [
-        ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
+        ["/login",  "user/login.view.client.html", "default-style.css", ""],
         ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/register",  "user/register.view.client.html", "default-style.css", "RegisterController"],
         ["/user/:uid",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
