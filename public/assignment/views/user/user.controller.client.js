@@ -6,13 +6,13 @@
     'use strict';
     var myApp = angular.module('myApp');
 
-    myApp.controller('LoginController', LoginController)
-    var LoginController = function($scope, $location, UserService) {
+    myApp.controller('LoginController', LoginController);
+    function LoginController($scope, $location, UserService) {
         this.username = "";
         this.password = "";
 
         this.login = function(){
-            var found_user = UserService.login(user.username, user.password);
+            var found_user = UserService.findUserByCredentials(this.username, this.password);
             if(!found_user){
                 alert("Username&Password pair not found.");
             } else {
@@ -21,8 +21,8 @@
         };
     };
 
-    myApp.controller('RegisterController', RegisterController)
-    var RegisterController = function($scope, $location, UserService) {
+    myApp.controller('RegisterController', RegisterController);
+    function RegisterController($scope, $location, UserService) {
         this.username = "";
         this.password = "";
 
@@ -39,8 +39,8 @@
     };
 
     myApp.controller('ProfileController', ProfileController);
-    var ProfileController = function($scope, routeParams, UserService){
-        this.user = UserService.findUserById(routeParams.userId);
+    function ProfileController($scope, $routeParams, UserService){
+        this.user = UserService.findUserById($routeParams.userId);
 
         this.update = function(){
 
