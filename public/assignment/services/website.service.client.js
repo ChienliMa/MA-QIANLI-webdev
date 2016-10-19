@@ -26,6 +26,7 @@
             // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter' +
             createWebsite: function (userId, website){
                 website._id = Date.now();
+                website.developerId = userId;
                 websites.push(website);
             },
 
