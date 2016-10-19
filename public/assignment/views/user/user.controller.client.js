@@ -36,7 +36,6 @@
                 $location.path("/login");
             }
         };
-
     };
 
     myApp.controller('ProfileController', ProfileController);

@@ -7,17 +7,18 @@
     var myApp = angular.module('myApp');
 
     myApp.controller("WebsiteListController", WebsiteListController);
-    var WebsiteListController = function($scope, $routeParams){
-
+    function WebsiteListController($scope, $routeParams, WebsiteService){
+        this.websites = WebsiteService.findWebsitesByUser($routeParams.uid.toString());
+        alert(this.websites)
     };
 
     myApp.controller("NewWebsiteController", NewWebsiteController);
-    var NewWebsiteController = function($scope, $routeParams){
+    function NewWebsiteController($scope, $routeParams){
 
     };
 
     myApp.controller("EditWebsiteController", EditWebsiteController);
-    var EditWebsiteController = function($scope, $routeParams){
+    function EditWebsiteController($scope, $routeParams){
 
     };
 })(window.angular);

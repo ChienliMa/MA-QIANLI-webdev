@@ -31,8 +31,7 @@
 
             // retrieves the websites in local websites array whose developerId matches the parameter userId
             findWebsitesByUser: function (userId){
-                var rval = websites.filter(function(x){return x.developerId == userId;});
-                return rval.length > 0 ? rval[0] : null;
+                return websites.filter(function(x){return x.developerId == userId;});
             },
 
             // retrieves the website in local websites array whose _id matches the websiteId parameter
