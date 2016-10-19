@@ -6,14 +6,18 @@
     'use strict';
     var myApp = angular.module('myApp', ["ngRoute", "angularCSS"]);
 
-    myApp.controller('WebsiteController', ['$scope','$routeParams', function($scope, $routeParams) {
-        var uid = $routeParams.uid;
-        var wid = $routeParams.wid;
-        var pid = $routeParams.pid;
+    myApp.controller("WebsiteListController", WebsiteListController);
+    var WebsiteListController = function($scope, $routeParams){
 
-        $scope.websites= [{"name":"spotify", "desc":""},
-            {"name":"medude", "desc":""},
-            {"name":"dwidder", "desc":""}];
+    };
 
-    }]);
+    myApp.controller("NewWebsiteController", NewWebsiteController);
+    var WebsiteListController = function($scope, $routeParams){
+
+    };
+
+    myApp.controller("EditWebsiteController", EditWebsiteController);
+    var WebsiteListController = function($scope, $routeParams){
+
+    };
 })(window.angular);

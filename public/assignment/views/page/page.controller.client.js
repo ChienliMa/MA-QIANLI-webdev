@@ -6,13 +6,22 @@
     'use strict';
     var myApp = angular.module('myApp');
 
-    myApp.controller('PageController', ['$scope','$routeParams', function($scope, $routeParams) {
-        var uid = $routeParams.uid;
-        var wid = $routeParams.wid;
-        var pid = $routeParams.pid;
+    PageListController
+    NewPageController
+    EditPageController
 
-        $scope.pages= [{"name":"Onepage", "title":""},
-            {"name":"Mypage", "title":""},
-            {"name":"Yourpage", "title":""}];
-    }]);
+    myApp.controller("PageListController", PageListController);
+    var PageListController = function($scope, $routeParams){
+
+    };
+
+    myApp.controller("NewPageController", NewPageController);
+    var NewPageController = function($scope, $routeParams){
+
+    };
+
+    myApp.controller("EditPageController", EditPageController);
+    var EditPageController = function($scope, $routeParams){
+
+    };
 })(window.angular);

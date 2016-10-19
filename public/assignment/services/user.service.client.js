@@ -24,12 +24,11 @@
             // adds the user parameter instance to the local users array
             "createUser": function (user) {
                 for(var i = 0; i < users.length;i++){
-                    if(users[i].username == user.username){
-                        return false;
-                    }
+                    if(users[i].username == user.username){return false;}
                 }
-                user._id = 1;
+                user._id = Date.now();
                 users.push(user);
+                return true;
             },
 
             // returns the user in local users array whose _id matches the userId parameter
@@ -52,17 +51,18 @@
 
             // updates the user in local users array whose _id matches the userId parameter
             "updateUser": function (userId, user) {
-                for(var i = 0; i < users.length; i++){
-                    if(user[i]._id == userId){
-                        return ture;
-                    }
-                }
-                return false;
+                users.filter(function(x){return x._id == userId;})
+                    .map(function(x){
+                        x.username = user.username;
+                        x.password = user.password;
+                        x.firstname = user.firstname;
+                        x.lastname = user.lastname;
+                    });
             },
 
             // removes the user whose _id matches the userId parameter
             "deleteUser": function (userId) {
-                uers = users.filter(function(x){return x._id != userId;})
+                users = users.filter(function(x){return x._id != userId;})
             }
         };
     });

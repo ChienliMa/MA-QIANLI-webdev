@@ -6,19 +6,18 @@
     'use strict';
     var myApp = angular.module('myApp');
 
-    myApp.controller('WidgetController', ['$scope','$routeParams', function($scope, $routeParams) {
-        var uid = $routeParams.uid;
-        var wid = $routeParams.wid;
-        var pid = $routeParams.pid;
+    myApp.controller("WidgetListController", WidgetListController);
+    var WidgetListController = function($scope, $routeParams){
 
-        $scope.TYPE = {HEADING:"heading", IMAGE:"image", YOUTUBE:"youtube"};
+    };
 
-        $scope.HEADING_MEM = ["Name", "Text", "Size"];
-        $scope.IMAGE_MEM = ["Name", "Text", "URL", "Width"];
-        $scope.YOUTUBE_MEM = ["Name", "Text", "URL", "Width"];
+    myApp.controller("NewWidgetController", NewWidgetController);
+    var NewWidgetController = function($scope, $routeParams){
 
-        $scope.widgets = [{"type":$scope.TYPE.HEADING, "name":"heading", "content":"HELLO WORLD!"},
-            {"type":$scope.TYPE.IMAGE, "name":"hello world", "content":"http://browningit.com/wp-content/uploads/2015/09/helloworld.gif"},
-            {"type":$scope.TYPE.YOUTUBE, "name":"PPAP", "content":"https://www.youtube.com/embed/yygpgCFJFnA?html5=1"}];
-    }]);
+    };
+
+    myApp.controller("EditWidgetController", EditWidgetController);
+    var EditWidgetController = function($scope, $routeParams){
+
+    };
 })(window.angular);
