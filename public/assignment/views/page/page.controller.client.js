@@ -6,10 +6,6 @@
     'use strict';
     var myApp = angular.module('myApp');
 
-    PageListController
-    NewPageController
-    EditPageController
-
     myApp.controller("PageListController", PageListController);
     var PageListController = function($scope, $routeParams){
 

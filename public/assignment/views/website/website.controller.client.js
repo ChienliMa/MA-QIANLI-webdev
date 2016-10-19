@@ -4,7 +4,7 @@
 
 (function(angular) {
     'use strict';
-    var myApp = angular.module('myApp', ["ngRoute", "angularCSS"]);
+    var myApp = angular.module('myApp');
 
     myApp.controller("WebsiteListController", WebsiteListController);
     var WebsiteListController = function($scope, $routeParams){
