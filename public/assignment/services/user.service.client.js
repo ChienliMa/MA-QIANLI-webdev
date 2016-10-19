@@ -33,7 +33,7 @@
 
             // returns the user in local users array whose _id matches the userId parameter
             "findUserById": function (userId) {
-                var rval = users.filter(function(x){return x._id == userId;});
+                var rval = users.filter(function(x){return x._id == userId.toString();});
                 return rval.length > 0 ? rval[0] : null;
             },
 

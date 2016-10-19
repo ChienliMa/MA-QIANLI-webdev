@@ -16,7 +16,7 @@
             if(!found_user){
                 alert("Username&Password pair not found.");
             } else {
-                $location.path("/user/" + found_user.id);
+                $location.path("/user/" + found_user._id);
             }
         };
     };
@@ -25,11 +25,12 @@
     function RegisterController($scope, $location, UserService) {
         this.username = "";
         this.password = "";
+        this.confirm = "";
 
         this.register = function(){
-            if($scope.confirm_password != $scope.user.password){
+            if(this.confirm != this.password){
                 alert("Passwords didn't match.");
-            }else if (!UserService.register(user.id, user.password)){
+            }else if (!UserService.createUser({username:this.username, password:this.password})){
                 alert("Occupied username.");
             } else {
                 $location.path("/login");
@@ -40,11 +41,12 @@
 
     myApp.controller('ProfileController', ProfileController);
     function ProfileController($scope, $routeParams, UserService){
-        this.user = UserService.findUserById($routeParams.userId);
-
+        this.user = UserService.findUserById($routeParams.uid);
         this.update = function(){
-
+            UserService.updateUser(this.user._id, this.user);
+            this.user = UserService.findUserById($routeParams.uid);
         };
+
     };
 
 })(window.angular);
