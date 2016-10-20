@@ -43,11 +43,13 @@
 
             // updates the website in local websites array whose _id matches the websiteId parameter
             updateWebsite: function (websiteId, website){
-                websites.filter(function(x){return x._id == websiteId;})
-                    ,map(function(x){
-                        x.name = website.name;
-                        x.developerId= website.developerId;
-                    });
+                website._id = websiteId;
+                for(var i = 0; i < websites.length; i++){
+                    if (websites[i]._id == websiteId){
+                        websites[i] = website;
+                        break
+                    }
+                }
             },
 
             // removes the website from local websites array whose _id matches the websiteId parameter

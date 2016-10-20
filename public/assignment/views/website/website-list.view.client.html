@@ -16,7 +16,7 @@
     <ul class="list-group">
         <div class="list-group-item" ng-repeat="website in model.websites" >
             <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
-            <a class="glyphicon glyphicon-cog pull-right" href="website-edit.view.client.html"></a>
+            <a class="glyphicon glyphicon-cog pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}"></a>
         </div>
     </ul>
 </div>

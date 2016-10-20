@@ -2,21 +2,21 @@
     <div class="row">
         <div class="col-md-4 visible-md-block" style="padding-right: 0px;">
             <div class="navbar-header navbar-brand">
-                <a class="glyphicon glyphicon-chevron-left" href="#/user/0/website"></a>
+                <a class="glyphicon glyphicon-chevron-left" ng-href="#/user/{{model.uid}}/website"></a>
                 Websites
             </div>
-            <a class="navbar-header navbar-brand pull-right" href="#/user/0/website/new">
+            <a class="navbar-header navbar-brand pull-right" ng-href="#/user/{{model.uid}}/website">
                 <span class="glyphicon glyphicon-plus icon-default"></span>
             </a>
         </div>
 
         <div class="col-md-8">
             <div class="navbar-brand">
-                <a class="glyphicon glyphicon-chevron-left hidden-md" href="#/user/0/website"></a>
+                <a class="glyphicon glyphicon-chevron-left hidden-md" ng-href="#/user/{{model.uid}}/website"></a>
                 Edit Website
             </div>
 
-            <a class="navbar-brand pull-right" href="website-list.view.client.html">
+            <a class="navbar-brand pull-right" ng-click="model.update();">
                 <span class="glyphicon glyphicon-ok icon-default"></span>
             </a>
         </div>
@@ -27,9 +27,9 @@
 <div class="container-fluid row" style="overflow: hidden; height: calc(100vh - 130px);  display: flex; flex-grow: 1;" >
     <div class="col-md-4 visible-md-block" style="height: auto; overflow: auto; flex: 1;">
         <ul class="list-group">
-            <div class="list-group-item" ng-repeat="website in websites" >
+            <div class="list-group-item" ng-repeat="website in model.websites" >
                 <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
-                <a class="glyphicon glyphicon-cog pull-right" href="#/user/0/website/0"></a>
+                <a class="glyphicon glyphicon-cog pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}"></a>
             </div>
         </ul>
     </div>
@@ -38,13 +38,15 @@
         <form>
             <div class="form-group">
                 <label for="name">name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your App Name">
+                <input type="text" class="form-control" id="name"
+                       placeholder="Your App Name" ng-model="model.website.name">
             </div>
             <div class="form-group">
                 <label for="desc">Description</label>
-                <textarea type="text" class="form-control" id="desc" rows="6" placeholder="Your App Description"></textarea>
+                <textarea type="text" class="form-control" id="desc" rows="6"
+                          placeholder="Your App Description" ng-model="model.website.description"></textarea>
             </div>
-            <a class="btn btn-danger  btn-block" href="#/user/0/website">delete</a>
+            <a class="btn btn-danger  btn-block" ng-click="model.delete();">delete</a>
         </form>
     </div>
 </div>
