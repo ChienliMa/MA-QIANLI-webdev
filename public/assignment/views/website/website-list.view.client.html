@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a class="glyphicon glyphicon-chevron-left" href="profile.html"></a>
+            <a class="glyphicon glyphicon-chevron-left" ng-href="#/user/{{model.uid}}"></a>
             Website
         </div>
 
@@ -23,6 +23,6 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container－fluid">
-        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="#/user/0"></a>
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" ng-href="#/user/{{model.uid}}"></a>
     </div>
 </nav>

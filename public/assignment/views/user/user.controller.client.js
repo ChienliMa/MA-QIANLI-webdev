@@ -39,11 +39,12 @@
     };
 
     myApp.controller('ProfileController', ProfileController);
-    function ProfileController($scope, $routeParams, UserService){
+    function ProfileController($scope, $routeParams, $location, UserService){
         this.user = UserService.findUserById($routeParams.uid);
         this.update = function(){
             UserService.updateUser(this.user._id, this.user);
             this.user = UserService.findUserById($routeParams.uid);
+            alert("saved successffully");
         };
 
     };

@@ -51,13 +51,12 @@
 
             // updates the user in local users array whose _id matches the userId parameter
             "updateUser": function (userId, user) {
-                users.filter(function(x){return x._id == userId;})
-                    .map(function(x){
-                        x.username = user.username;
-                        x.password = user.password;
-                        x.firstname = user.firstname;
-                        x.lastname = user.lastname;
-                    });
+                for(var i = 0;i < users.length;i++){
+                    if (users[i]._id == userId){
+                        users[i] = angular.copy(user);
+                        break;
+                    }
+                }
             },
 
             // removes the user whose _id matches the userId parameter
