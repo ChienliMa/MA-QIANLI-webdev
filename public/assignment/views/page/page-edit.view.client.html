@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no" />
-    <meta charset="UTF-8">
-    <title>New Websites</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <script tpye="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <link href="css/page-style.css" rel="stylesheet"/>
-</head>
-<body>
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a class="glyphicon glyphicon-chevron-left" href="page-list.html"></a>
+            <a class="glyphicon glyphicon-chevron-left" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page"></a>
             Edit Page
         </div>
 
-        <a class="navbar-brand pull-right" href="page-list.html">
+        <a class="navbar-brand pull-right" ng-click="model.update();">
             <span class="glyphicon glyphicon-ok icon-default"></span>
         </a>
     </div>
@@ -28,19 +14,18 @@
 
 <div class="container">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Your page name">
+    <input type="text" class="form-control" id="name"
+           ng-model="model.page.name" placeholder="Your page name">
 
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="Your page name">
-    <a class="btn btn-danger  btn-block" href="page-list.html">delete</a>
+    <input type="text" class="form-control" id="title"
+           ng-model="model.page.title" placeholder="Your page title">
+
+    <a class="btn btn-danger  btn-block" ng-click="model.delete();">delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container－fluid">
-        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="profile.html"></a>
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" ng-href="#/user/{{model.uid}}"></a>
     </div>
 </nav>
-
-
-</body>
-</html>

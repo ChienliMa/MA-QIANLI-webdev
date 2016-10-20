@@ -1,28 +1,28 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a class="glyphicon glyphicon-chevron-left" href="website-list.html"></a>
+            <a class="glyphicon glyphicon-chevron-left" href="#/user/{{model.uid}}/website"></a>
             Pages
         </div>
 
-        <a class="navbar-brand pull-right" href="page-new.html">
+        <a class="navbar-brand pull-right" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/new">
             <span class="glyphicon glyphicon-plus icon-default"></span>
         </a>
     </div>
 </nav>
 
 
-<div class="container" ng-controller="PageController">
+<div class="container">
     <ul class="list-group">
-        <div class="list-group-item" ng-repeat="page in pages">
-            <a href="widget-list.html" style="width:90%; display:inline-flex;">{{page.name}}</a>
-            <a class="glyphicon glyphicon-cog pull-right" href="page-edit.html"></a>
+        <div class="list-group-item" ng-repeat="page in model.pages">
+            <a ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget" style="width:90%; display:inline-flex;">{{page.name}}</a>
+            <a class="glyphicon glyphicon-cog pull-right" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}"></a>
         </div>
     </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container－fluid">
-        <a class="glyphicon glyphicon-user navbar-brand pull-right" href="profile.html"></a>
+        <a class="glyphicon glyphicon-user navbar-brand pull-right" ng-href="#/user/{{model.uid}}"></a>
     </div>
 </nav>
