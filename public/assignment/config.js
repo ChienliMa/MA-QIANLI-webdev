@@ -20,8 +20,8 @@
         ["/user/:uid/website/:wid/page/:pid",   "page/page-edit.view.client.html", "page-style.css", "EditPageController"],
 
         ["/user/:uid/website/:wid/page/:pid/widget",    "widget/widget-list.view.client.html", "widget-style.css", "WidgetListController"],
-        ["/user/:uid/website/:wid/page/:pid/widget/new",    "widget/widget-chooser.view.client.html", "widget-style.css", "NewWidgetController"],
-        ["/user/:uid/website/:wid/page/:pid/widget/:wgid",  "widget/widget-edit.view.client.html", "widget-style.css", "EditWidgetListController"]
+        ["/user/:uid/website/:wid/page/:pid/widget/new",    "widget/widget-choose.view.client.html", "widget-style.css", "WidgetChooseController"],
+        ["/user/:uid/website/:wid/page/:pid/widget/:wgid/:wtype",  "widget/widget-edit.view.client.html", "widget-style.css", "EditWidgetController"]
     ];
 
     function Config($routeProvider) {

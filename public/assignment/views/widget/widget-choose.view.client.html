@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header navbar-brand">
-            <a class="glyphicon glyphicon-chevron-left" href="widget-list.html"></a>
+            <a class="glyphicon glyphicon-chevron-left" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"></a>
             Add Widget
         </div>
     </div>
@@ -10,7 +10,7 @@
 
 <div class="container">
     <ul class="list-group">
-        <a class="list-group-item" ng-repeat="type in TYPE"  ng-href="widget-{{type}}.html">
+        <a class="list-group-item" ng-repeat="(type, attrs) in model.types"  ng-click="model.newWidget(type);">
             <font color="#6495ed">{{type}}</font>
         </a>
     </ul>
