@@ -23,12 +23,11 @@
     </div>
 </nav>
 
-
 <div class="container-fluid row" style="overflow: hidden; height: calc(100vh - 130px);  display: flex; flex-grow: 1;" >
     <div class="col-md-4 visible-md-block" style="height: auto; overflow: auto; flex: 1;">
         <ul class="list-group">
             <div class="list-group-item" ng-repeat="website in model.websites" >
-                <a href="page-list.html" style="width:90%; display:inline-flex;">{{website.name}}</a>
+                <a ng-href="#/user/{{model.uid}}/website/{{website._id}}/page" style="width:90%; display:inline-flex;">{{website.name}}</a>
                 <a class="glyphicon glyphicon-cog pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}"></a>
             </div>
         </ul>
