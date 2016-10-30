@@ -11,12 +11,6 @@
     //   PAGE SERVICE
     // ================
     app.factory("PageService", function(){
-        var pages =
-            [
-                { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem", title: "Lorem"},
-                { _id: "432", name: "Post 2", websiteId: "456", description: "Lorem", title: "Lorem"},
-                { _id: "543", name: "Post 3", websiteId: "456", description: "Lorem", title: "Lorem"}
-            ]
 
         return {
             // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
