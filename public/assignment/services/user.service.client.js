@@ -11,57 +11,36 @@
     //   USER SERVICE
     // ================
     app.factory("UserService", function(){
-        // what is user please........
-        var users =
-            [
-                {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-                {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-                {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-            ];
 
         return {
             // adds the user parameter instance to the local users array
-            "createUser": function (user) {
-                for(var i = 0; i < users.length;i++){
-                    if(users[i].username == user.username){return false;}
-                }
-                user._id = Date.now();
-                users.push(user);
-                return true;
+            "createUser": function (user, $http) {
+                $http.post("/api/user", user);
             },
 
             // returns the user in local users array whose _id matches the userId parameter
-            "findUserById": function (userId) {
-                var rval = users.filter(function(x){return x._id == userId.toString();});
-                return rval.length > 0 ? rval[0] : null;
-            },
-
-            // returns the user in local users array whose username matches the parameter username
-            "findUserByUsername": function (username) {
-                var rval = users.filter(function(x){return x.username == username;});
-                return rval.length > 0 ? rval[0] : null;
-            },
-
-            // returns the user whose username and password match the username and password parameters
-            "findUserByCredentials": function (username, password) {
-                var rval = users.filter(function(x){return x.username == username && x.password == password;});
-                return rval.length > 0 ? rval[0] : null;
+            "findUserById": function (userId, $http) {
+                $http.get("/api/" + userId.toString());
             },
 
             // updates the user in local users array whose _id matches the userId parameter
-            "updateUser": function (userId, user) {
-                for(var i = 0;i < users.length;i++){
-                    if (users[i]._id == userId){
-                        users[i] = angular.copy(user);
-                        break;
-                    }
-                }
+            "updateUser": function (userId, user, $http) {
+                $http.post("/api/" + userId, user);
             },
 
             // removes the user whose _id matches the userId parameter
-            "deleteUser": function (userId) {
-                users = users.filter(function(x){return x._id != userId;})
+            "deleteUser": function (userId, $http) {
+                $http.delete("/api/" + userId);
+            },
+
+            // returns the user in local users array whose username matches the parameter username
+            "findUserByUsername": function (username, $http) {
+                return $http.get(" /api/user?username="+username);
+            },
+
+            // returns the user whose username and password match the username and password parameters
+            "findUserByCredentials": function (username, password, $http) {
+                return $http.get(" /api/user?username="+username+"&"+"password="+password);
             }
         };
     });

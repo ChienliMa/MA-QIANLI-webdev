@@ -14,37 +14,28 @@
 
         return {
             // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
-            createPage: function (websiteId, page){
-                page._id = Date.now();
-                page.websiteId = websiteId;
-                pages.push(page);
+            createPage: function (websiteId, page, $http){
+                $http.post("/api/website/"+websiteId.toString()+"/page", page);
             },
 
             // return all pages under given websiteID
-            findPageByWebsiteId: function (websiteId){
-                return pages.filter(function(x){return x.websiteId == websiteId;});
+            findPageByWebsiteId: function (websiteId, $http){
+                return $http.get("/api/website/"+websiteId.toString()+"/page");
             },
 
             // return first page with given pageId, if none, reutnr null
-            findPageById: function (pageId){
-                var rval = pages.filter(function(x){return x._id == pageId;});
-                return rval.length > 0 ? rval[0] : null;
+            findPageById: function (pageId, $http){
+                return $http.get(" /api/page/"+pageId.toString());
             },
 
             // updates the page in local pages array whose _id matches the pageId parameter
-            updatePage: function (pageId, page){
-                page._id = pageId;
-                for(var i = 0; i < pages.length; i++){
-                    if (pages[i]._id == pageId){
-                        pages[i] = page;
-                        break;
-                    }
-                }
+            updatePage: function (pageId, page, $http){
+                $http.put("/api/page/"+pageId.toString(), page);
             },
 
             // removes the page from local pages array whose _id matches the pageId parameter
-            deletePage: function (pageId){
-                pages = pages.filter(function(x){return x._id != pageId;});
+            deletePage: function (pageId, $http){
+                $http.delete("/api/page/"+pageId.toString());
             }
         };
 
