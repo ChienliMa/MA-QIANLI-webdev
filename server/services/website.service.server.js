@@ -15,23 +15,28 @@ module.exports = function(app) {
     app.delete("/api/website/:wid", deleteWebsite);
 
     app.post("/api/user/:uid/website", createWebsite);
-    app.get("/api/user/:uid/website", findAllWebsitesForUser);
+    app.get("/api/user/:uid/website", findWebsitesByUser);
 
 
     function createWebsite(req, res){
         var website = req.body;
+        website.developerId = req.params.uid;
         website._id = Date.now();
-        website.developerId = req,uid;
         websites.push(website);
-        res,send(200);
+        res.sendStatus(200);
     }
 
     function findWebsitesByUser(req, res){
-        return websites.filter(function(x){return x.developerId == req.params.uid;});
+        res.status(200).send(websites.filter(function(x){return x.developerId == req.params.uid;}));
     }
 
     function findWebsiteById(req, res){
-        return websites.filter(function(x){return x._id == req.params.wid;});
+        var rval = websites.filter(function(x){return x._id == req.params.wid;});
+        if (rval.length > 0){
+            res.status(200).send(rval[0]);
+        } else {
+            res.sendStatus(404);
+        }
     }
 
     function updateWebsite(req, res){
@@ -39,16 +44,17 @@ module.exports = function(app) {
         website._id = req.params.wid;
         for(var i = 0; i < websites.length; i++){
             if (websites[i]._id == website._id){
-                websites[i] = website._id;
-                res.send(200);
+                websites[i] = website;
+                res.sendStatus(200);
                 return;
             }
         }
+        res.status(404).send("website not found");
     }
 
     function deleteWebsite(req, res) {
-        websites = websites.filter(function(x){return x._id != websiteId;});
-        res.sed(200)
+        websites = websites.filter(function(x){return x._id != req.params.wid;});
+        res.sendStatus(200)
     }
 }
 

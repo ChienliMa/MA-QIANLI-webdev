@@ -58,7 +58,6 @@
         vm.user = {};
         UserService.findUserById($routeParams.uid)
             .then(function(res){
-                console.log(res.data);
                 vm.user = res.data;
             });
 
