@@ -13,7 +13,7 @@ module.exports = function(app){
         ];
 
     app.post("/api/page/:pid/widget", createWidget);
-    app.get("/api/page/:pid/widget", findAllWidgetsForPage);
+    app.get("/api/page/:pid/widget", findWidgetsByPageId);
 
     app.get("/api/widget/:wgid", findWidgetById);
     app.get("/api/widget/:wgid", updateWidget);
@@ -25,7 +25,7 @@ module.exports = function(app){
         widget.pageId = req.params.pid;
         widget._id = Date.now();
         widgets.push(widget);
-        res.send(200);
+        res.sendStatus(200);
     }
 
     //retrieves the widgets in local widgets array whose pageId matches the parameter pageId
@@ -35,7 +35,8 @@ module.exports = function(app){
 
     //retrieves the widget in local widgets array whose _id matches the widgetId parameter
     function findWidgetById(req, res){
-        res.send(widgets.filter(function(x){return x._id == req.params.wgid;}));
+        var rval = widgets.filter(function(x){return x._id == req.params.wgid;});
+        res.send(rval[0]);
     }
 
     //updates the widget in local widgets array whose _id matches the widgetId parameter
@@ -44,15 +45,15 @@ module.exports = function(app){
             if(widgets[i]._id == req.params.wid){
                 var widget = req.body;
                 widget._id = req.params.wid;
-                res.send(200);
+                res.sendStatus(200);
             }
         }
     }
 
     //removes the widget from local widgets array whose _id matches the widgetId parameter
     function deleteWidget(req, res){
-        widgets = widgets.filter(function(x){return x._id == req.params.wgid;});
-        res.send(200);
+        widgets = widgets.filter(function(x){return x._id != req.params.wgid;});
+        res.sendStatus(200);
     }
 };
 

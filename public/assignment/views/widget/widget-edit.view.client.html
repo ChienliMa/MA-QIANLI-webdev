@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a class="glyphicon glyphicon-chevron-left" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"></a>
+            <a class="glyphicon glyphicon-chevron-left" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/"></a>
             Widget Edit
         </div>
 
@@ -24,7 +24,7 @@
         </div>
         <a ng-if="model.type == 'IMAGE'" class="btn btn-primary  btn-block" href="widget-list.html">Upload Image</a>
 
-    <a class="btn btn-danger  btn-block" href="widget-list.html">Delete</a>
+    <a class="btn btn-danger  btn-block" ng-click="model.delete()">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

@@ -16,7 +16,7 @@
    <div ng-repeat="widget in model.widgets">
        <div class="container">
            <div  class="widget-cog-pannel">
-               <a class="widget-icon glyphicon glyphicon-cog" ng-href="widget-{{widget.widgetType}}.html"></a>
+               <a class="widget-icon glyphicon glyphicon-cog" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}/{{widget.widgetType}}"></a>
                <a class="widget-icon glyphicon glyphicon-menu-hamburger" ></a>
            </div>
 

@@ -16,16 +16,17 @@
 
     myApp.controller("WidgetChooseController", WidgetChooseController);
     function WidgetChooseController($scope, $routeParams, $location){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
-        this.pid = $routeParams.pid.toString();
+        var model = this;
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
+        model.pid = $routeParams.pid.toString();
 
-        this.types = types;
+        model.types = types;
 
-        this.newWidget = function(selected_type){
-            $location.path("/user/" + this.uid
-                + "/website/" + this.wid
-                + "/page/" + this.pid
+        model.newWidget = function(selected_type){
+            $location.path("/user/" + model.uid
+                + "/website/" + model.wid
+                + "/page/" + model.pid
                 + "/widget/" + "-1"
                 + "/" + selected_type);
         };
@@ -33,47 +34,55 @@
 
     myApp.controller("WidgetListController", WidgetListController);
     function WidgetListController($scope, $routeParams, WidgetService){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
-        this.pid = $routeParams.pid.toString();
+        var model = this;
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
+        model.pid = $routeParams.pid.toString();
 
-        this.widgets = WidgetService.findWidgetsByPageId(this.pid);
+        WidgetService.findWidgetsByPageId(model.pid)
+            .then(function(res){
+                model.widgets = res.data;
+            });
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
     function EditWidgetController($scope, $routeParams, $location, WidgetService){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
-        this.pid = $routeParams.pid.toString();
-        this.wgid = $routeParams.wgid.toString();
-        this.type = $routeParams.wtype;
-        this.types = types;
-        if(this.wgid != "-1"){
-            this.widget = WidgetService.findWidgetById(this.wgid);
+        var model = this;
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
+        model.pid = $routeParams.pid.toString();
+        model.wgid = $routeParams.wgid.toString();
+        model.type = $routeParams.wtype;
+        model.types = types;
+
+        if(model.wgid != "-1"){
+            WidgetService.findWidgetById(model.wgid)
+                .then(function(res) {
+                    console.log(res.data);
+                    model.widget = res.data;
+                });
         } else {
-            this.widget = {widgetType:this.type};
+            model.widget = {widgetType:model.type};
         }
 
 
-        var model= this;
-
-        this.save = function(){
+        model.save = function(){
             if(model.wgid == "-1"){
                 WidgetService.createWidget(model.pid, model.widget);
             } else {
                 WidgetService.updateWidget(model.wgid, model.widget);
             }
-            $location.path("/user/" + this.uid
-                + "/website/" + this.wid
-                + "/page/" + this.pid
+            $location.path("/user/" + model.uid
+                + "/website/" + model.wid
+                + "/page/" + model.pid
                 + "/widget");
         };
 
-        this.delete = function(){
-            WidgetService.deleteWidget(this.wgid);
-            $location.path("/user/" + this.uid
-                + "/website/" + this.wid
-                + "/page/" + this.pid
+        model.delete = function(){
+            WidgetService.deleteWidget(model.wgid);
+            $location.path("/user/" + model.uid
+                + "/website/" + model.wid
+                + "/page/" + model.pid
                 + "/widget");
         };
     };

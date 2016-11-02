@@ -10,11 +10,11 @@
     // ==================
     //   WIDGET SERVICE
     // ==================
-    app.factory("WidgetService", function(){
+    app.factory("WidgetService", function($http){
 
         return {
             //adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
-            createWidget: function(pageId, widget, $http){
+            createWidget: function(pageId, widget){
                 $http.post("/api/page/"+pageId+"/widget", widget);
             },
 
@@ -35,7 +35,7 @@
 
             //retrieves the widget in local widgets array whose _id matches the widgetId parameter
             findWidgetById: function(widgetId){
-                return $htttp.get("/api/page/"+pageId+"/widget");
+                return $http.get("/api/widget/"+widgetId);
             }
         };
     });
