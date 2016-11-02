@@ -25,7 +25,7 @@
 
             //removes the widget from local widgets array whose _id matches the widgetId parameter
             deleteWidget: function(widgetId){
-                $http.delete(/api/widget/"+widgetId.toString());
+                $http.delete("/api/widget/"+widgetId.toString());
             },
 
             //retrieves the widgets in local widgets array whose pageId matches the parameter pageId

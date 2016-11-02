@@ -8,41 +8,70 @@
 
     myApp.controller("PageListController", PageListController);
     function PageListController($scope, $routeParams, PageService){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
+        var model = this;
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
 
-        this.pages = PageService.findPageByWebsiteId(this.wid);
+        PageService.findPageByWebsiteId(this.wid)
+            .then(function(res) {
+                model.pages = res.data;
+            });
     };
+
 
     myApp.controller("NewPageController", NewPageController);
     function NewPageController($scope, $routeParams, $location, PageService){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
+        var model = this;
 
-        this.page = {name: "", websiteId: "", description: "", title: ""};
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
 
-        this.newPage = function(){
-            PageService.createPage(this.wid, angular.copy(this.page));
-            $location.path("/user/" + this.uid + "/website/" + this.wid + "/page/");
+        model.page = {name: "", websiteId: "", description: "", title: ""};
+
+        model.newPage = function(){
+            PageService.createPage(model.wid, angular.copy(model.page))
+                .then(function(res) {
+                    $location.path("/user/" + model.uid + "/website/" + model.wid + "/page/");
+                },
+                function(res) {
+                    alert("Operation fail:" + res.data);
+                });
+
         };
     };
 
+
     myApp.controller("EditPageController", EditPageController);
     function EditPageController($scope, $routeParams, $location, PageService){
-        this.uid = $routeParams.uid.toString();
-        this.wid = $routeParams.wid.toString();
-        this.pid = $routeParams.pid.toString();
+        var model = this;
+        model.uid = $routeParams.uid.toString();
+        model.wid = $routeParams.wid.toString();
+        model.pid = $routeParams.pid.toString();
 
-        this.page = PageService.findPageById(this.pid);
+        PageService.findPageById(this.pid)
+            .then(function(res){
+                model.page = res.data;
+            });
 
-        this.update = function(){
-            PageService.updatePage(this.pid, angular.copy(this.page));
-            $location.path("/user/" + this.uid + "/website/" + this.wid + "/page/");
+        model.update = function(){
+            PageService.updatePage(model.pid, angular.copy(model.page))
+                .then(function(res){
+                    $location.path("/user/" + model.uid + "/website/" + model.wid + "/page/");
+                },
+                function(res){
+                    alert("Operation fail.");
+                });
         };
 
-        this.delete = function(){
-            PageService.deletePage(this.pid);
-            $location.path("/user/" + this.uid + "/website/" + this.wid + "/page/");
+        model.delete = function(){
+            PageService.deletePage(model.pid)
+                .then(function(res){
+                    $location.path("/user/" + model.uid + "/website/" + model.wid + "/page/");
+                },
+                function(res){
+                    alert("Operation Fail");
+                });
+
         };
     };
 })(window.angular);
