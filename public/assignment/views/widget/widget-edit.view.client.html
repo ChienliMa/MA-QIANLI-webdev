@@ -18,14 +18,17 @@
         <input type="text" class="form-control" ng-attr-id="{{mem}}"
                ng-model="model.widget[mem]" placeholder="{{model.type.toLowerCase()}} {{mem}}">
     </div>
-        <div class="form-group" ng-if="model.type == 'IMAGE'">
-            <label class="control-label">Upload from local</label>
-            <input type="file" class="form-control" data-icon="false">
-        </div>
-        <a ng-if="model.type == 'IMAGE'" class="btn btn-primary  btn-block" href="widget-list.html">Upload Image</a>
 
-    <a class="btn btn-danger  btn-block" ng-click="model.delete()">Delete</a>
+    <form  ng-if="model.type == 'IMAGE'">
+        <label> Choose from file </label>
+        <input type="file" file-model="file" class="form-control"/>
+        <button class="btn btn-block btn-primary" ng-click="model.uploadFile()">Upload Image</button>
+    </form>
+
+    <a class="btn btn-danger  btn-block" ng-click="model.delete()" style="margin-top: 5px;">Delete</a>
 </div>
+
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container－fluid">

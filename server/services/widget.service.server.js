@@ -1,3 +1,7 @@
+var fs = require("fs");
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' })
+
 module.exports = function(app){
     var widgets =
         [
@@ -18,6 +22,8 @@ module.exports = function(app){
     app.get("/api/widget/:wgid", findWidgetById);
     app.get("/api/widget/:wgid", updateWidget);
     app.delete("/api/widget/:wgid", deleteWidget);
+
+    app.post ("/api/upload", upload.single('file'), uploadFile);
 
     //adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
     function createWidget(req, res){
@@ -54,6 +60,10 @@ module.exports = function(app){
     function deleteWidget(req, res){
         widgets = widgets.filter(function(x){return x._id != req.params.wgid;});
         res.sendStatus(200);
+    }
+
+    function uploadFile(req, res) {
+        res.status(200).send("/"+req.file.path);
     }
 };
 

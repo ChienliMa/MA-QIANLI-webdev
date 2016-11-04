@@ -2,9 +2,28 @@
  * Created by ChienliMa on 9/29/16.
  */
 
+
+
 (function(angular) {
     'use strict';
     var myApp = angular.module('myApp');
+
+    myApp.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        console.log(scope);
+                        modelSetter(scope.$parent.model, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
 
     var types =
         {
@@ -46,7 +65,7 @@
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
-    function EditWidgetController($scope, $routeParams, $location, WidgetService){
+    function EditWidgetController($scope, $routeParams, $location, $sce, WidgetService){
         var model = this;
         model.uid = $routeParams.uid.toString();
         model.wid = $routeParams.wid.toString();
@@ -85,5 +104,14 @@
                 + "/page/" + model.pid
                 + "/widget");
         };
-    };
+
+        model.uploadFile = function(){
+            var file = model.file;
+            WidgetService.uploadFileToUrl(file, "/api/upload")
+                .then(function (res) {
+                    model.widget.url = "http://"+$location.host()+":"+$location.port()+res.data;
+                    model.widget.width = "100%";
+                });
+        };
+    }
 })(window.angular);

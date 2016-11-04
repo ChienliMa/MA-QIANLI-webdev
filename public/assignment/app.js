@@ -6,7 +6,7 @@
     'use strict';
     var myApp = angular.module('myApp', ["ngRoute", "angularCSS"]);
 
-    myApp.filter("trustUrl", ['$sce', function ($sce) {
+    myApp.filter("trustAsRes", ['$sce', function ($sce) {
         return function (recordingUrl) {
             return $sce.trustAsResourceUrl(recordingUrl);
         };
@@ -17,4 +17,5 @@
             return $sce.trustAsHtml(htmlCode);
         }
     }]);
+
 })(window.angular);
