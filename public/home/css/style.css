@@ -270,7 +270,7 @@ body{
 	color:#FF9800;
 }
 /*-- //footer --*/
-//*-- responsive --*/
+/*-- responsive --*/
 @media(max-width:1440px){
 	#m_nav_menu {
 		right: 140px!important;
@@ -319,10 +319,10 @@ body{
 	}
 }
 @media(max-width:991px){
-	.w3ls-banner-left {
+	.ls-banner-left {
 		width: 35%;
 	}
-	.w3ls-banner-right {
+	.ls-banner-right {
 		width: 65%;
 	}
 	.banner-right-img {
@@ -442,12 +442,12 @@ body{
 	.banner-right-img {
 		width: 45%;
 	}
-	.w3ls-banner-left {
+	.ls-banner-left {
 		float: none;
 		width: 100%;
 		margin: 1em 0 0 0;
 	}
-	.w3ls-banner-right {
+	.ls-banner-right {
 		width: 100%;
 		float: none;
 	}
@@ -455,7 +455,7 @@ body{
 		width: 36%;
 		margin: 0 auto;
 	}
-	.w3l-banner-grids {
+	.l-banner-grids {
 		margin: 2em 0 0 0;
 	}
 	.banner {
@@ -575,7 +575,7 @@ body{
 	.banner-right-img {
 		width: 60%;
 	}
-	.w3ls-banner-right {
+	.ls-banner-right {
 		padding: 0;
 	}
 	.social-info {
@@ -588,7 +588,7 @@ body{
 		margin: 0;
 		width: 100%;
 	}
-	.w3ls-banner-left {
+	.ls-banner-left {
 		padding: 0;
 	}
 	.agile-statistics-grid i.fa.fa-desktop, .agile-statistics-grid i.fa.fa-user, .agile-statistics-grid i.fa.fa-trophy {
