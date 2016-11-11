@@ -22,6 +22,15 @@
     <form  ng-if="model.type == 'IMAGE'">
         <label> Choose from file </label>
         <input type="file" file-model="file" class="form-control"/>
+
+        <label> Search in Flicker </label>
+        <div class="input-group-btn" style="display:flex">
+        <input ng-model="searchText" type="text" class="form-control" style="flex:2 0 81vw">
+        <a ng-click="model.searchPhotos(searchText);" class="btn btn-default" style="margin-bottom:5px;">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+        </div>
+
         <button class="btn btn-block btn-primary" ng-click="model.uploadFile()">Upload Image</button>
     </form>
 
