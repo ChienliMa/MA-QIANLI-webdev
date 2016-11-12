@@ -1,12 +1,38 @@
 module.exports = function (app) {
-    var users =
-        [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
 
+    var connectionString = 'mongodb://127.0.0.1:27017/test';
+
+    if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+        connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+            process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+            process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+            process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+            process.env.OPENSHIFT_APP_NAME;
+    }
+
+    var mongoose = require("mongoose");
+    mongoose.connect(connectionString);
+
+    var UserSchema = mongoose.Schema({
+        username: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        email: String,
+        phone: String,
+        websites: [Website],
+        dateCreated: Date
+    });
+
+    var users = mongoose.model("User", UserSchema);
+
+    // var users =
+    //     [
+    //         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
+    //         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
+    //         {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
+    //         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+    //     ];
 
     app.get("/api/user", findUser);
     app.get("/api/user/:uid", findUser);
