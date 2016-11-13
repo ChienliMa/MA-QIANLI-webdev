@@ -17,7 +17,7 @@ module.exports = function(app){
     mongoose.connect(connectionString);
 
     var WidgetSchema = mongoose.Schema({
-        _page:  [{ type: Schema.Types.ObjectId, ref: 'Page' }],
+        _page:  [Page],
         type: {type: String, enum: ["HEADER", "HTML", "IMAGE", "YOUTUBE"]},
         name: String,
         text: String,

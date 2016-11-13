@@ -20,7 +20,7 @@ module.exports = function (app) {
         lastName: String,
         email: String,
         phone: String,
-        websites: [Website],
+        websites: [{type:mongoose.Schema.Types.ObjectId, ref: "Website"}],
         dateCreated: Date
     });
 

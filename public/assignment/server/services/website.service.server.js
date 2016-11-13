@@ -13,10 +13,10 @@ module.exports = function(app) {
     mongoose.connect(connectionString);
 
     var WebsiteSchema = mongoose.Schema({
-        _user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        _user: { type: Number, ref: 'User' },
         name: String,
         description: String,
-        pages: [Page],
+        pages: [{ type: Schema.Types.ObjectId, ref: 'Page' }],
         dateCreated: Date
     });
 
