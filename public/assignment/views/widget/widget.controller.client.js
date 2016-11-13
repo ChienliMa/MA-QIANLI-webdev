@@ -65,7 +65,7 @@
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
-    function EditWidgetController($scope, $routeParams, $location, $sce, WidgetService){
+    function EditWidgetController($scope, $routeParams, $location, WidgetService, FlickrService){
         var model = this;
         model.uid = $routeParams.uid.toString();
         model.wid = $routeParams.wid.toString();
@@ -73,6 +73,7 @@
         model.wgid = $routeParams.wgid.toString();
         model.type = $routeParams.wtype;
         model.types = types;
+        model.photos = [];
 
         if(model.wgid != "-1"){
             WidgetService.findWidgetById(model.wgid)
@@ -118,11 +119,18 @@
             FlickrService
                 .searchPhotos(searchTerm)
                 .then(function(response) {
-                    data = response.data.replace("jsonFlickrApi(","");
+
+                    var data = response.data.replace("jsonFlickrApi(","");
                     data = data.substring(0,data.length - 1);
                     data = JSON.parse(data);
-                    model.photos = data.photos;
+                    model.photos = data.photos.photo;
                 });
+        };
+
+        model.selectPhoto = function(photo) {
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            model.widget.url = url;
         };
     }
 })(window.angular);
