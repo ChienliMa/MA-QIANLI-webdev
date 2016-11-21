@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function () {
     var mongoose = require("mongoose");
     var pages = mongoose.model("Page", PageSchema);
 
@@ -11,30 +11,25 @@ module.exports = function (app) {
         res.sendStatus(200);
     }
 
-    function updatePage(req, res){
-        for(var i = 0; i < pages.length ;i++){
-            if (pages[i]._id == req.params.pid){
-                pages[i] = req.body;
-                res.send(200);
-                return;
-            }
+    return {
+        createPage : function(websiteId, page){
+
+        },
+        findAllPagesForWebsite : function(websiteId){
+
+        },
+        findPageById : function(pageId){
+
+        },
+        updatePage : function(pageId, page){
+
+        },
+        deletePage : function(pageId){
+
         }
     }
 
-    function findPageByid(req, res){
-        var rval = pages.filter(function(x){return x._id == req.params.pid;})
-        res.send(rval[0]);
-    }
-
-    function deletePage(req, res){
-        pages = pages.filter(function(x){return x._id != req.params.pid;});
-        res.sendStatus(200);
-    }
-
-    function findPagesByWebsiteId(req, res){
-        res.send(pages.filter(function(x){return x.websiteId == req.params.wid;}));
-    }
-}
+};
 
 
 

@@ -1,7 +1,7 @@
-module.exports = function(app) {
+module.exports = function() {
     var mongoose = require("mongoose");
     var WebsiteSchema = mongoose.Schema({
-        _user: { type: Number, ref: 'User' },
+        _user: { type: Schema.Types.ObjectId, ref: 'User' },
         name: String,
         description: String,
         pages: [{ type: Schema.Types.ObjectId, ref: 'Page' }],

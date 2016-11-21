@@ -2,42 +2,7 @@ var fs = require("fs");
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' })
 
-module.exports = function(app){
-    // var connectionString = 'mongodb://127.0.0.1:27017/test';
-    //
-    // if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    //     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-    //         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-    //         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-    //         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-    //         process.env.OPENSHIFT_APP_NAME;
-    // }
-    //
-    // var mongoose = require("mongoose");
-    // mongoose.connect(connectionString);
-    //
-    // var WidgetSchema = mongoose.Schema({
-    //     _page:  [Page],
-    //     type: {type: String, enum: ["HEADER", "HTML", "IMAGE", "YOUTUBE"]},
-    //     name: String,
-    //     text: String,
-    //     placeholder:String,
-    //     description: String,
-    //     url: String,
-    //     width: String,
-    //     height: String,
-    //     rows: Number,
-    //     size: Number,
-    //     class: String,
-    //     icon: String,
-    //     deletable: Boolean,
-    //     formatted: Boolean,
-    //     dateCreated: Date
-    // });
-    //
-    // var widgets = mongoose.model("Widget", WidgetSchema);
-    //
-
+module.exports = function(app, model){
     var widgets =
         [
             { _id: "123", widgetType: "HEADER",     pageId: "321", size: 2, text: "GIZMODO"},

@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function() {
     var mongoose = require("mongoose");
     var WebsiteSchema = require("./website.schema.server")();
     var websites = mongoose.model("Website", WebsiteSchema);
@@ -11,37 +11,24 @@ module.exports = function(app) {
         res.sendStatus(200);
     }
 
-    function findWebsitesByUser(req, res){
-        res.status(200).send(websites.filter(function(x){return x.developerId == req.params.uid;}));
-    }
+    return {
+        createWebsiteForUser : function(userId, website){
 
-    function findWebsiteById(req, res){
-        var rval = websites.filter(function(x){return x._id == req.params.wid;});
-        if (rval.length > 0){
-            res.status(200).send(rval[0]);
-        } else {
-            res.sendStatus(404);
+        },
+        findAllWebsitesForUser : function(userId){
+
+        },
+        findWebsiteById : function(websiteId){
+
+        },
+        updateWebsite : function(websiteId, website){
+
+        },
+        deleteWebsite : function(websiteId){
+
         }
-    }
-
-    function updateWebsite(req, res){
-        var website = req.body;
-        website._id = req.params.wid;
-        for(var i = 0; i < websites.length; i++){
-            if (websites[i]._id == website._id){
-                websites[i] = website;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(404).send("website not found");
-    }
-
-    function deleteWebsite(req, res) {
-        websites = websites.filter(function(x){return x._id != req.params.wid;});
-        res.sendStatus(200)
-    }
-}
+    }  
+};
 
 
 
