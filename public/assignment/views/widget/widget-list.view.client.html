@@ -1,3 +1,28 @@
+<script>
+
+</script>
+
+<script>
+    $(document).ready(function(){
+
+    // Sort the parents
+    $(".sortable").sortable({
+        items: "> div",
+        handle: ".move",
+        tolerance: "pointer",
+        cursor: "move",
+        opacity: 0.7,
+        revert: 300,
+        delay: 100,
+        dropOnEmpty: true,
+        placeholder: ".movable-placeholder",
+        start: function(e, ui) {
+            ui.placeholder.height(ui.helper.outerHeight());
+        }
+    });
+})
+</script>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-brand">
@@ -12,12 +37,12 @@
 </nav>
 
 
-<div class="container">
-   <div ng-repeat="widget in model.widgets">
+<div class="container" data-as-sortable="model.dragEventListeners" data-ng-model="model.widgets">
+   <div data-ng-repeat="widget in model.widgets" data-as-sortable-item>
        <div class="container">
            <div  class="widget-cog-pannel">
                <a class="widget-icon glyphicon glyphicon-cog" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}/{{widget.widgetType}}"></a>
-               <a class="widget-icon glyphicon glyphicon-menu-hamburger" ></a>
+               <a class="widget-icon glyphicon glyphicon-menu-hamburger move" data-as-sortable-item-handle></a>
            </div>
 
            <div ng-if="widget.widgetType == 'HEADER'">

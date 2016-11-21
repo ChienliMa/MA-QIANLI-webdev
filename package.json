@@ -8,7 +8,8 @@
     "express": "^4.13.4",
     "mongoose": "^4.4.15",
     "multer" : "",
-    "angular-file-upload" : ""
+    "angular-file-upload" : "",
+    "ng-sortable" : ""
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -4,7 +4,7 @@
 
 (function(angular) {
     'use strict';
-    var myApp = angular.module('myApp', ["ngRoute", "angularCSS"]);
+    var myApp = angular.module('myApp', ["ngRoute", "angularCSS", "as.sortable"]);
 
     myApp.filter("trustAsRes", ['$sce', function ($sce) {
         return function (recordingUrl) {
@@ -17,5 +17,15 @@
             return $sce.trustAsHtml(htmlCode);
         }
     }]);
+
+    // myApp.directive("sortable", function(){
+    //    function linker(scope, element, attributes) {
+    //
+    //    }
+    //
+    //    return {
+    //        link: linker
+    //    }
+    // });
 
 })(window.angular);

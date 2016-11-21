@@ -45,8 +45,24 @@ body {
     float:right;
     display:inline;
 }
+
+
 .widget-icon{
     /*position:absolute;*/
     width: 20px;
     background: white;
+}
+
+.sortable {
+
+}
+
+.move {
+
+}
+
+.movable-placeholder{
+    border: 10px;
+    border-color: #000000;
+    margin: 10px;
 }

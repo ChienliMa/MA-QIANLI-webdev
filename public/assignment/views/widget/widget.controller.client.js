@@ -52,7 +52,7 @@
     };
 
     myApp.controller("WidgetListController", WidgetListController);
-    function WidgetListController($scope, $routeParams, WidgetService){
+    function WidgetListController($scope, $routeParams, WidgetService, PageService){
         var model = this;
         model.uid = $routeParams.uid.toString();
         model.wid = $routeParams.wid.toString();
@@ -62,6 +62,23 @@
             .then(function(res){
                 model.widgets = res.data;
             });
+
+        PageService.findPageById(model.pid)
+            .then(function(res){
+                model.page = res.data;
+                console.log(model.page.widgets);
+            });
+
+        model.dragEventListeners = {
+            orderChanged: function(event) {
+                var ids = [];
+                for(var i=0; i<model.widgets.length; i++){
+                    ids.push(model.widgets[i]._id);
+                }
+                model.page.widgets = ids;
+                PageService.updatePage(model.pid, model.page);
+            }
+        };
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
