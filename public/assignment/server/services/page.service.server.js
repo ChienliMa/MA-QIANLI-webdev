@@ -1,13 +1,4 @@
 module.exports = function (app, model) {
-
-    var pages =
-        [
-            { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem", title: "Lorem",
-                widgets: [123,234,345,456,567,678,789]},
-            { _id: "432", name: "Post 2", websiteId: "456", description: "Lorem", title: "Lorem"},
-            { _id: "543", name: "Post 3", websiteId: "456", description: "Lorem", title: "Lorem"}
-        ]
-
     app.get("/api/page/:pid", findPageByid);
     app.put("/api/page/:pid", updatePage);
     app.delete("/api/page/:pid", deletePage);

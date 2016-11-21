@@ -1,6 +1,6 @@
 module.exports = function(){
     var mongoose = require("mongoose");
-    var WidgetSchema = mongoose.Schema({
+    return mongoose.Schema({
         _page: {type: Schema.Types.ObjectId, ref: "Page"},
         type: {type: String, enum: ["HEADER", "HTML", "IMAGE", "YOUTUBE"]},
         name: String,
@@ -18,7 +18,5 @@ module.exports = function(){
         formatted: Boolean,
         dateCreated: Date
     });
-
-    var widgets = mongoose.model("Widget", WidgetSchema);
 };
 

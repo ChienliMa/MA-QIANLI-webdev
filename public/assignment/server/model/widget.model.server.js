@@ -1,28 +1,28 @@
 module.exports = function(){
     var mongoose = require("mongoose");
-    return mongoose.Schema({
-        _user: { type: Number, ref: 'User' },
-        name: String,
-        description: String,
-        pages: [{ type: Schema.Types.ObjectId, ref: 'Page' }],
-        dateCreated: Date
-    });
+    var Widgets = mongoose.model("Widget", WidgetSchema);
+
 
     return {
         createWidget : function(pageId, widget){
-
+            widget.pageId = pageId;
+            return Widgets.create(widget);
         },
+
         findAllWidgetsForPage : function(pageId){
-
+            return Widgets.find({pageId : pageId});
         },
+
         findWidgetById : function(widgetId){
-
+            return Widgets.findOne({_id : widgetId});
         },
+
         updateWidget : function(widgetId, widget){
-
+            return Widgets.findOneAndUpdate({_id : widgetId}, widget);
         },
-        deleteWidget : function(widgetId){
 
+        deleteWidget : function(widgetId){
+            return Widgets.findOneAndRemove({_id : widgetId});
         }
     }
 };
