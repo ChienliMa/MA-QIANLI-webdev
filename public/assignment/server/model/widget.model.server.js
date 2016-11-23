@@ -1,7 +1,5 @@
-module.exports = function(){
-    var mongoose = require("mongoose");
-    var WidgetSchema = require("./widget.schema.server")();
-    var Widget = mongoose.model("Widget", WidgetSchema);
+module.exports = function(model){
+    var Widget = model.Widget;
 
     return {
         createWidget : function(pageId, widget){

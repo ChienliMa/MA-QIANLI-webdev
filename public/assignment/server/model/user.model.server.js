@@ -1,7 +1,6 @@
-module.exports = function(){
-    var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
-    var User = mongoose.model("User", UserSchema);
+module.exports = function(model){
+    var User = model.User;
+    var Website = model.Website;
 
     return {
         createUser : function(user){
@@ -25,6 +24,7 @@ module.exports = function(){
         },
 
         deleteUser : function(userId){
+            Website.remove({_user:userId});
             return User.findOneAndRemove({_id : userId});
         }
     }

@@ -1,7 +1,6 @@
-module.exports = function() {
-    var mongoose = require("mongoose");
-    var PageSchema = require("./page.schema.server")();
-    var Page = mongoose.model("Page", PageSchema);
+module.exports = function(model) {
+    var Page = model.Page;
+    var Widget = model.Widget;
 
     return {
         createPage : function(websiteId, page){
@@ -38,6 +37,7 @@ module.exports = function() {
         },
 
         deletePage : function(pageId){
+            Widget.remove({_page:pageId});
             return Page.findOneAndRemove({_id : pageId});
         }
     }

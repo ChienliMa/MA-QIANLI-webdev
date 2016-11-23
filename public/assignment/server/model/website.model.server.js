@@ -1,7 +1,6 @@
-module.exports = function() {
-    var mongoose = require("mongoose");
-    var WebsiteSchema = require("./website.schema.server")();
-    var Website = mongoose.model("Website", WebsiteSchema);
+module.exports = function(model) {
+    var Website = model.Website;
+    var Page = model.Page;
 
     return {
         createWebsiteForUser : function(userId, website){
@@ -23,6 +22,7 @@ module.exports = function() {
         },
 
         deleteWebsite : function(websiteId){
+            Page.remove({_website:websiteId});
             return Website.findOneAndRemove({_id : websiteId});
         }
     }  

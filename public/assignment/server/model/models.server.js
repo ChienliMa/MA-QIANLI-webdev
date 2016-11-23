@@ -12,11 +12,18 @@ module.exports = function () {
 
     mongoose.connect(connectionString);
 
+
+    var model = {};
+    model.Website = mongoose.model("Website", require("./website.schema.server")());
+    model.Page = mongoose.model("Page", require("./page.schema.server")());
+    model.User = mongoose.model("User", require("./user.schema.server")());
+    model.Widget = mongoose.model("Widget", require("./widget.schema.server")());
+
     return {
-        Users : require("./user.model.server.js")(),
-        Websites : require("./website.model.server.js")(),
-        Pages : require("./page.model.server.js")(),
-        Widgets : require("./widget.model.server.js")()
+        Users : require("./user.model.server.js")(model),
+        Websites : require("./website.model.server.js")(model),
+        Pages : require("./page.model.server.js")(model),
+        Widgets : require("./widget.model.server.js")(model)
     };
 };
 
