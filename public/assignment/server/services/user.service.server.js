@@ -7,10 +7,9 @@ module.exports = function (app, model) {
 
 
     function createUser(req, res) {
-        var user = req.body;
-        model.Users.createUser(user)
+        model.Users.createUser(req.body)
             .then(
-
+                function(){res.sendStatus(200);}
             )
     }
 
@@ -27,51 +26,44 @@ module.exports = function (app, model) {
 
     // returns the user in local users array whose _id matches the userId parameter
     function findUserById(req, res) {
-        var id = req.params.uid;
-        model.Users.findUserById(uid)
-            .then()
-
-        res.status(200).send(rval.length > 0 ? rval[0] : null);
+        model.Users.findUserById(ureq.params.uidid)
+            .then(
+                function(rval){res.send(rval);}
+            )
     }
 
     // returns the user in local users array whose username matches the parameter username
     function findUserByUsername (req, res) {
         model.Users.findUserByUsername(req.query.username)
-            .then()
-
-        res.send(rval.length > 0 ? rval[0] : null);
+            .then(
+                function(rval){res.send(rval);}
+            )
     }
 
     // returns the user whose username and password match the username and password parameters
     function findUserByCredentials (req, res) {
         model.Users.findUserByCredentials(req.query.username, req.query.password)
             .then(
-
-
+                function(rval){res.status(200).send(rval);}
             )
-        res.status(200).send(rval.length > 0 ? rval[0] : null);
     }
 
     // updates the user in local users array whose _id matches the userId parameter
     function updateUser(req, res) {
         model.Users.updateUser(req.params.uid, req.body)
             .then(
-
-
+                function(rval){res.sendStatus(200);},
+                function(rval){res.status(404).send("user not found");
+                }
             )
-
-
-        res.status(404).send("user not found");
     }
 
     // removes the user whose _id matches the userId parameter
     function deleteUser(req, res) {
         model.Users.deleteUser(req.params.uid)
             .then(
-
-
+                function(){res.sendStatus(200);}
             )
-        res.send(200);
     }
 };
 
