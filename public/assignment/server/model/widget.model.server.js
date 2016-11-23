@@ -1,28 +1,28 @@
 module.exports = function(){
     var mongoose = require("mongoose");
-    var Widgets = mongoose.model("Widget", WidgetSchema);
-
+    var WidgetSchema = require("./widget.schema.server")();
+    var Widget = mongoose.model("Widget", WidgetSchema);
 
     return {
         createWidget : function(pageId, widget){
             widget.pageId = pageId;
-            return Widgets.create(widget);
+            return Widget.create(widget);
         },
 
-        findAllWidgetsForPage : function(pageId){
-            return Widgets.find({pageId : pageId});
+        findWidgetsByPage : function(pageId){
+            return Widget.find({pageId : pageId});
         },
 
         findWidgetById : function(widgetId){
-            return Widgets.findOne({_id : widgetId});
+            return Widget.findOne({_id : widgetId});
         },
 
         updateWidget : function(widgetId, widget){
-            return Widgets.findOneAndUpdate({_id : widgetId}, widget);
+            return Widget.findOneAndUpdate({_id : widgetId}, widget);
         },
 
         deleteWidget : function(widgetId){
-            return Widgets.findOneAndRemove({_id : widgetId});
+            return Widget.findOneAndRemove({_id : widgetId});
         }
     }
 };

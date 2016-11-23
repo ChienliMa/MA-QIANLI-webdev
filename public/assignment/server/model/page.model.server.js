@@ -1,27 +1,28 @@
-module.exports = function () {
+module.exports = function() {
     var mongoose = require("mongoose");
-    var Pages = mongoose.model("Page", PageSchema);
+    var PageSchema = require("./page.schema.server")();
+    var Page = mongoose.model("Page", PageSchema);
 
     return {
         createPage : function(websiteId, page){
             page.websiteId = websiteId;
-            return Pages.create(page);
+            return Page.create(page);
         },
 
-        findAllPagesForWebsite : function(websiteId){
-            return Pages.find({websiteId : websiteId});
+        findPagesByWebsite : function(websiteId){
+            return Page.find({websiteId : websiteId});
         },
 
         findPageById : function(pageId){
-            return Pages.findOne({_id : pageId});
+            return Page.findOne({_id : pageId});
         },
 
         updatePage : function(pageId, page){
-            return Pages.findOneAndUpdate({_id : pageId}, page);
+            return Page.findOneAndUpdate({_id : pageId}, page);
         },
 
         deletePage : function(pageId){
-            return Pages.findOneAndRemove({_id : pageId});
+            return Page.findOneAndRemove({_id : pageId});
         }
     }
 

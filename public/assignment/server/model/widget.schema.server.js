@@ -1,7 +1,7 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     return mongoose.Schema({
-        _page: {type: Schema.Types.ObjectId, ref: "Page"},
+        _page: {type: mongoose.Schema.Types.ObjectId, ref: "Page"},
         type: {type: String, enum: ["HEADER", "HTML", "IMAGE", "YOUTUBE"]},
         name: String,
         text: String,

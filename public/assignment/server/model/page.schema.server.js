@@ -1,7 +1,7 @@
 module.exports = function () {
     var mongoose = require("mongoose");
     return mongoose.Schema({
-        _website: { type: Schema.Types.ObjectId, ref: 'Website' },
+        _website: {type: mongoose.Schema.Types.ObjectId, ref: 'Website' },
         name: String,
         title: String,
         description: String,

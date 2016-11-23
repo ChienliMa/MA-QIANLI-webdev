@@ -9,18 +9,30 @@ module.exports = function(app, model) {
 
     function createWebsite(req, res){
         var website = req.body;
-        website.developerId = req.params.uid;
-        website._id = Date.now();
-        websites.push(website);
+        model.Websites.createWebsiteForUser(req.params.uid, website)
+            .then(
+
+
+            );
+
         res.sendStatus(200);
     }
 
     function findWebsitesByUser(req, res){
+        model.Websites.findAllWebsitesForUser(req.params.uid)
+            .then(
+
+            );
         res.status(200).send(websites.filter(function(x){return x.developerId == req.params.uid;}));
     }
 
     function findWebsiteById(req, res){
-        var rval = websites.filter(function(x){return x._id == req.params.wid;});
+        model.Websites.findWebsiteById(req.params.wid)
+            ,then(
+
+
+             );
+
         if (rval.length > 0){
             res.status(200).send(rval[0]);
         } else {
@@ -29,25 +41,16 @@ module.exports = function(app, model) {
     }
 
     function updateWebsite(req, res){
-        var website = req.body;
-        website._id = req.params.wid;
-        for(var i = 0; i < websites.length; i++){
-            if (websites[i]._id == website._id){
-                websites[i] = website;
-                res.sendStatus(200);
-                return;
-            }
-        }
+        model.Websites.updateWebsite(req.params.wid, req.body)
+            .then(
+
+
+            );
         res.status(404).send("website not found");
     }
 
     function deleteWebsite(req, res) {
-        websites = websites.filter(function(x){return x._id != req.params.wid;});
-        res.sendStatus(200)
+        model.Websites.deleteWebsite((req.params.wid));
+        res.sendStatus(200);
     }
 }
-
-
-
-
-

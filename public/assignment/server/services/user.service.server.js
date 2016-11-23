@@ -8,9 +8,10 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var user = req.body;
-        user._id = Date.now();
-        users.push(user);
-        res.status(200).send();
+        model.Users.createUser(user)
+            .then(
+
+            )
     }
 
     function findUser(req, res){
@@ -26,37 +27,50 @@ module.exports = function (app, model) {
 
     // returns the user in local users array whose _id matches the userId parameter
     function findUserById(req, res) {
-        var rval = users.filter(function(x){return x._id == req.params.uid;});
+        var id = req.params.uid;
+        model.Users.findUserById(uid)
+            .then()
+
         res.status(200).send(rval.length > 0 ? rval[0] : null);
     }
+
     // returns the user in local users array whose username matches the parameter username
     function findUserByUsername (req, res) {
-        var rval = users.filter(function(x){return x.username == req.query.username;});
+        model.Users.findUserByUsername(req.query.username)
+            .then()
+
         res.send(rval.length > 0 ? rval[0] : null);
     }
 
     // returns the user whose username and password match the username and password parameters
     function findUserByCredentials (req, res) {
-        var q = req.query;
-        var rval = users.filter(function(x){return x.username == q.username && x.password == q.password;});
+        model.Users.findUserByCredentials(req.query.username, req.query.password)
+            .then(
+
+
+            )
         res.status(200).send(rval.length > 0 ? rval[0] : null);
     }
 
     // updates the user in local users array whose _id matches the userId parameter
     function updateUser(req, res) {
-        for(var i = 0; i <  users.length; i++){
-            if (users[i]._id == req.params.uid){
-                users[i] = req.body;
-                res.send(200);
-                return;
-            }
-        }
+        model.Users.updateUser(req.params.uid, req.body)
+            .then(
+
+
+            )
+
+
         res.status(404).send("user not found");
     }
 
     // removes the user whose _id matches the userId parameter
     function deleteUser(req, res) {
-        users.filter(function(x){return x._id != req.params.uid;});
+        model.Users.deleteUser(req.params.uid)
+            .then(
+
+
+            )
         res.send(200);
     }
 };

@@ -28,24 +28,24 @@ module.exports = function(app, model){
 
     //retrieves the widget in local widgets array whose _id matches the widgetId parameter
     function findWidgetById(req, res){
-        var rval = widgets.filter(function(x){return x._id == req.params.wgid;});
-        res.send(rval[0]);
+        model.Widgets.findWidgetById(req.params.wgid)
+            .then(
+                res.send(rval[0]);
+            )
     }
 
     //updates the widget in local widgets array whose _id matches the widgetId parameter
     function updateWidget(req, res){
-        for(var i = 0; i < widgets.length ; i++){
-            if(widgets[i]._id == req.params.wid){
-                var widget = req.body;
-                widget._id = req.params.wid;
-                res.sendStatus(200);
-            }
-        }
+        model.Widgets.updateWidget(req.params.wgid, req.body)
+            .then(
+
+            );
     }
 
     //removes the widget from local widgets array whose _id matches the widgetId parameter
     function deleteWidget(req, res){
-        widgets = widgets.filter(function(x){return x._id != req.params.wgid;});
+        model.Widgets.deleteWidget(req.params.wgid)
+            .then();
         res.sendStatus(200);
     }
 

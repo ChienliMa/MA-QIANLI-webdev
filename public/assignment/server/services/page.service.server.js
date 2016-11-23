@@ -8,35 +8,36 @@ module.exports = function (app, model) {
 
 
     function createPage(req, res){
-        var page = req.body;
-        page.websiteId = req.params.wid;
-        page._id = Date.now();
-        pages.push(page);
-        res.sendStatus(200);
+        mode.Pages.createPage(req.params.wid, req.body)
+            .then(
+                res.sendStatus(200);
+            );
     }
 
     function updatePage(req, res){
-        for(var i = 0; i < pages.length ;i++){
-            if (pages[i]._id == req.params.pid){
-                pages[i] = req.body;
+        mode.Pages.updatePage(req.params.pid, req.body)
+            .then(
                 res.send(200);
-                return;
-            }
-        }
+            );
     }
 
-    function findPageByid(req, res){
-        var rval = pages.filter(function(x){return x._id == req.params.pid;})
-        res.send(rval[0]);
+    function findPageById(req, res){
+        model.Pages.findPageById(req.params.pid)
+            .then(
+                res.send(rval[0]);
+            )
     }
 
     function deletePage(req, res){
-        pages = pages.filter(function(x){return x._id != req.params.pid;});
+        model.Pages.deletePage(req.params.pid);
         res.sendStatus(200);
     }
 
     function findPagesByWebsiteId(req, res){
-        res.send(pages.filter(function(x){return x.websiteId == req.params.wid;}));
+        model.Pages.findPagesByWebsite(req.params.wid)
+            .then(
+                res.send(pages.filter(function(x){return x.websiteId == req.params.wid;}));
+            );
     }
 }
 

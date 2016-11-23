@@ -13,10 +13,10 @@ module.exports = function () {
     mongoose.connect(connectionString);
 
     return {
-        Users : require("./user.model.server")(),
-        Websites : require("./website.model.server")(),
-        Pages : require("./page.model.server")(),
-        Widgets : require("./widget.model.server")()
+        Users : require("./user.model.server.js")(),
+        Websites : require("./website.model.server.js")(),
+        Pages : require("./page.model.server.js")(),
+        Widgets : require("./widget.model.server.js")()
     };
 };
 
