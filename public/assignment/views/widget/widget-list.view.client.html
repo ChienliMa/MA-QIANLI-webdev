@@ -41,11 +41,11 @@
    <div data-ng-repeat="widget in model.widgets" data-as-sortable-item>
        <div class="container">
            <div  class="widget-cog-pannel">
-               <a class="widget-icon glyphicon glyphicon-cog" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}/{{widget.widgetType}}"></a>
+               <a class="widget-icon glyphicon glyphicon-cog" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}/{{widget.type}}"></a>
                <a class="widget-icon glyphicon glyphicon-menu-hamburger move" data-as-sortable-item-handle></a>
            </div>
 
-           <div ng-if="widget.widgetType == 'HEADER'">
+           <div ng-if="widget.type == 'HEADER'">
                <div ng-if="widget.size == '1'"><h1>{{widget.text}}</h1></div>
                <div ng-if="widget.size == '2'"><h2>{{widget.text}}</h2></div>
                <div ng-if="widget.size == '3'"><h3>{{widget.text}}</h3></div>
@@ -54,15 +54,15 @@
            </div>
 
 
-           <div ng-if="widget.widgetType == 'IMAGE'">
+           <div ng-if="widget.type == 'IMAGE'">
                <img class="widget-image" ng-src="{{widget.url | trustAsRes}}" ng-stlye="width: {{widget.width}}" >
            </div>
 
-           <div ng-if="widget.widgetType == 'YOUTUBE'">
+           <div ng-if="widget.type == 'YOUTUBE'">
                <iframe class="widget-youtube" ng-src="{{widget.url | trustAsRes}}" allowfullscreen></iframe>
            </div>
 
-           <div ng-if="widget.widgetType == 'HTML'" ng-bind-html="widget.text | trustHTML">
+           <div ng-if="widget.type == 'HTML'" ng-bind-html="widget.text | trustHTML">
            </div>
 
        </div>

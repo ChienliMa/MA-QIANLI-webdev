@@ -7,7 +7,7 @@ module.exports = function(app, model){
     app.get("/api/page/:pid/widget", findWidgetsByPageId);
 
     app.get("/api/widget/:wgid", findWidgetById);
-    app.get("/api/widget/:wgid", updateWidget);
+    app.put("/api/widget/:wgid", updateWidget);
     app.delete("/api/widget/:wgid", deleteWidget);
 
     app.post ("/api/upload", upload.single('file'), uploadFile);
@@ -15,13 +15,13 @@ module.exports = function(app, model){
     //adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
     function createWidget(req, res){
         model.Widgets.createWidget(req.params.pid, req.body)
-            .then(function(){res.sendStatus(200);})
+            .then(function(rval){res.sendStatus(200);})
     }
 
     //retrieves the widgets in local widgets array whose pageId matches the parameter pageId
     function findWidgetsByPageId(req, res){
         model.Widgets.findWidgetsByPage(req.params.pid)
-            .then(function(rval){console.log(rval);res.send(rval);})
+            .then(function(rval){res.send(rval);})
     }
 
     //retrieves the widget in local widgets array whose _id matches the widgetId parameter

@@ -1,8 +1,8 @@
 module.exports = function(){
     var mongoose = require("mongoose");
     return mongoose.Schema({
-        _page: {type: mongoose.Schema.Types.ObjectId, ref: "Page"},
-        type: {type: String, enum: ["HEADER", "HTML", "IMAGE", "YOUTUBE"]},
+        _page: {type: mongoose.Schema.Types.ObjectId, ref: 'Page'},
+        type: {type: String, enum: ['HEADER', 'HTML', 'IMAGE', 'YOUTUBE']},
         name: String,
         text: String,
         placeholder:String,
@@ -11,7 +11,7 @@ module.exports = function(){
         width: String,
         height: String,
         rows: Number,
-        size: Number,
+        size: String,
         class: String,
         icon: String,
         deletable: Boolean,

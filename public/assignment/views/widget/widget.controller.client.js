@@ -60,13 +60,13 @@
 
         WidgetService.findWidgetsByPageId(model.pid)
             .then(function(res){
+                console.log(res.data);
                 model.widgets = res.data;
             });
 
         PageService.findPageById(model.pid)
             .then(function(res){
                 model.page = res.data;
-                console.log(model.page.widgets);
             });
 
         model.dragEventListeners = {
@@ -79,6 +79,8 @@
                 PageService.updatePage(model.pid, model.page);
             }
         };
+
+        console.log(model.widgets);
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
@@ -99,14 +101,15 @@
                     model.widget = res.data;
                 });
         } else {
-            model.widget = {widgetType:model.type};
+            model.widget = {type : model.type};
         }
 
-
         model.save = function(){
+            console.log(model.wgid);
             if(model.wgid == "-1"){
                 WidgetService.createWidget(model.pid, model.widget);
             } else {
+                console.log("lol");
                 WidgetService.updateWidget(model.wgid, model.widget);
             }
             $location.path("/user/" + model.uid
