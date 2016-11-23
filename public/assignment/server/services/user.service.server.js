@@ -26,7 +26,7 @@ module.exports = function (app, model) {
 
     // returns the user in local users array whose _id matches the userId parameter
     function findUserById(req, res) {
-        model.Users.findUserById(ureq.params.uidid)
+    model.Users.findUserById(req.params.uid)
             .then(
                 function(rval){res.send(rval);}
             )

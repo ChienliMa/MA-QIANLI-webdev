@@ -5,12 +5,12 @@ module.exports = function(){
 
     return {
         createWidget : function(pageId, widget){
-            widget.pageId = pageId;
+            widget._page = pageId;
             return Widget.create(widget);
         },
 
         findWidgetsByPage : function(pageId){
-            return Widget.find({pageId : pageId});
+            return Widget.find({_page : pageId});
         },
 
         findWidgetById : function(widgetId){

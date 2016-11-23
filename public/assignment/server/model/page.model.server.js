@@ -5,12 +5,12 @@ module.exports = function() {
 
     return {
         createPage : function(websiteId, page){
-            page.websiteId = websiteId;
+            page._website = websiteId;
             return Page.create(page);
         },
 
         findPagesByWebsite : function(websiteId){
-            return Page.find({websiteId : websiteId});
+            return Page.find({_website : websiteId});
         },
 
         findPageById : function(pageId){

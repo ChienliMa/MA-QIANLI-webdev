@@ -16,7 +16,7 @@ module.exports = function(app, model) {
     }
 
     function findWebsitesByUser(req, res){
-        model.Websites.findAllWebsitesForUser(req.params.uid)
+        model.Websites.findWebsitesByUser(req.params.uid)
             .then(
                 function(rval){res.status(200).send(rval);}
             );
@@ -39,7 +39,7 @@ module.exports = function(app, model) {
     }
 
     function deleteWebsite(req, res) {
-        model.Websites.deleteWebsite((req.params.wid));
-        res.sendStatus(200);
+        model.Websites.deleteWebsite((req.params.wid))
+            .then(function(){res.sendStatus(200);});
     }
 }

@@ -8,14 +8,14 @@ module.exports = function (app, model) {
 
 
     function createPage(req, res){
-        mode.Pages.createPage(req.params.wid, req.body)
+        model.Pages.createPage(req.params.wid, req.body)
             .then(
                 function(){res.sendStatus(200);}
             );
     }
 
     function updatePage(req, res){
-        mode.Pages.updatePage(req.params.pid, req.body)
+        model.Pages.updatePage(req.params.pid, req.body)
             .then(
                 function(){res.send(200);}
             );

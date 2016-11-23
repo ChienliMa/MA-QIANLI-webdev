@@ -20,8 +20,8 @@ module.exports = function(app, model){
 
     //retrieves the widgets in local widgets array whose pageId matches the parameter pageId
     function findWidgetsByPageId(req, res){
-        model.Widget.findWidgetsByPage(req.params.pid)
-            .then(function(rval){res.send(rval);})
+        model.Widgets.findWidgetsByPage(req.params.pid)
+            .then(function(rval){console.log(rval);res.send(rval);})
     }
 
     //retrieves the widget in local widgets array whose _id matches the widgetId parameter
