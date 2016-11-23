@@ -17,8 +17,24 @@ module.exports = function() {
             return Page.findOne({_id : pageId});
         },
 
+        findPopulatedPageById : function(pageId){
+            return Page
+                .findOne({_id : pageId})
+                .populate('widgets');
+        },
+
+        addWigetToPage : function(pid, wgid){
+            Page.findByIdAndUpdate(
+                pid,
+                {$push: {"widgets": wgid}},
+                {upsert: true, new : true},
+                function(err, model) {}
+            )
+        },
+
         updatePage : function(pageId, page){
-            return Page.findOneAndUpdate({_id : pageId}, page);
+            return Page.findOneAndUpdate({_id : pageId}, page)
+                .then(function(rval){res.sendStatus(200)});
         },
 
         deletePage : function(pageId){

@@ -14,14 +14,20 @@ module.exports = function(app, model){
 
     //adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
     function createWidget(req, res){
+        // need to add to page too
         model.Widgets.createWidget(req.params.pid, req.body)
-            .then(function(rval){res.sendStatus(200);})
+            .then(function(widget){
+                model.Pages.addWigetToPage(req.params.pid, widget._id);
+                res.status(200).send(widget._id);
+            })
     }
 
     //retrieves the widgets in local widgets array whose pageId matches the parameter pageId
     function findWidgetsByPageId(req, res){
-        model.Widgets.findWidgetsByPage(req.params.pid)
-            .then(function(rval){res.send(rval);})
+        model.Pages.findPopulatedPageById(req.params.pid)
+            .then(function(page){
+                res.send(page.widgets);
+            });
     }
 
     //retrieves the widget in local widgets array whose _id matches the widgetId parameter

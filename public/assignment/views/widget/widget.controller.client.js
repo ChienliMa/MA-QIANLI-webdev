@@ -60,7 +60,6 @@
 
         WidgetService.findWidgetsByPageId(model.pid)
             .then(function(res){
-                console.log(res.data);
                 model.widgets = res.data;
             });
 
@@ -76,11 +75,11 @@
                     ids.push(model.widgets[i]._id);
                 }
                 model.page.widgets = ids;
+                console.log(ids);
                 PageService.updatePage(model.pid, model.page);
             }
         };
 
-        console.log(model.widgets);
     };
 
     myApp.controller("EditWidgetController", EditWidgetController);
