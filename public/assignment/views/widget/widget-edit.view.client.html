@@ -15,8 +15,22 @@
 <div class="container">
     <div ng-repeat="mem in model.types[model.type]">
         <label ng-attr-for="{{men}}">{{mem}}</label>
-        <input type="text" class="form-control" ng-attr-id="{{mem}}"
-               ng-model="model.widget[mem]" placeholder="{{model.type.toLowerCase()}} {{mem}}">
+
+        <div ng-switch on="mem">
+            <div ng-switch-when="text">
+                <div ng-model="model.widget[mem]"
+                     text-angular
+                     ta-toolbar="[['h1','h2','h3'], ['bold','italics','underline','strikeThrough'],
+                    ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                    ['indent','outdent'],['html']]">
+                </div>
+            </div>
+
+            <div ng-switch-default>
+                <input type="text" class="form-control" ng-attr-id="{{mem}}"
+                       ng-model="model.widget[mem]" placeholder="{{model.type.toLowerCase()}} {{mem}}">
+            </div>
+        </div>
     </div>
 
     <form  ng-if="model.type == 'IMAGE'">

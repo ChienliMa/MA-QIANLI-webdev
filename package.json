@@ -9,7 +9,8 @@
     "mongoose": "^4.4.15",
     "multer" : "",
     "angular-file-upload" : "",
-    "ng-sortable" : ""
+    "ng-sortable" : "",
+    "textangular" : ""
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

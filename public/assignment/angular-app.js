@@ -4,7 +4,7 @@
 
 (function(angular) {
     'use strict';
-    var myApp = angular.module('myApp', ["ngRoute", "angularCSS", "as.sortable"]);
+    var myApp = angular.module('myApp', ["ngRoute", "angularCSS", "as.sortable", "textAngular"]);
 
     myApp.filter("trustAsRes", ['$sce', function ($sce) {
         return function (recordingUrl) {
