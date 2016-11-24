@@ -27,10 +27,11 @@
 
     var types =
         {
-            "HEADER": ["size", "text"],
-            "HTML":["text"],
-            "IMAGE" :["width", "url"],
-            "YOUTUBE":["width", "url"]
+            "HEADER" : ["size", "text"],
+            "HTML" : ["html_text"],
+            "IMAGE" : ["width", "url"],
+            "YOUTUBE" : ["width", "url"],
+            "TEXT" : ["text", "rows", "placeholder", "formatted"]
         };
 
     myApp.controller("WidgetChooseController", WidgetChooseController);
@@ -104,11 +105,9 @@
         }
 
         model.save = function(){
-            console.log(model.wgid);
             if(model.wgid == "-1"){
                 WidgetService.createWidget(model.pid, model.widget);
             } else {
-                console.log("lol");
                 WidgetService.updateWidget(model.wgid, model.widget);
             }
             $location.path("/user/" + model.uid

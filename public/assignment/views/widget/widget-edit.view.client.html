@@ -2,22 +2,23 @@
     <div class="container-fluid">
         <div class="navbar-brand">
             <a class="glyphicon glyphicon-chevron-left" ng-href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/"></a>
-            Widget Edit
+            <span>Widget Edit</span>
         </div>
 
-        <a class="navbar-brand pull-right" ng-click="model.save();">
+        <button class="navbar-brand pull-right" ng-click="model.save();">
             <span class="glyphicon glyphicon-floppy-disk icon-default"></span>
-        </a>
+        </button>
     </div>
 </nav>
 
 
 <div class="container">
+
     <div ng-repeat="mem in model.types[model.type]">
         <label ng-attr-for="{{men}}">{{mem}}</label>
 
         <div ng-switch on="mem">
-            <div ng-switch-when="text">
+            <div ng-switch-when="html_text">
                 <div ng-model="model.widget[mem]"
                      text-angular
                      ta-toolbar="[['h1','h2','h3'], ['bold','italics','underline','strikeThrough'],
@@ -26,9 +27,18 @@
                 </div>
             </div>
 
+            <div ng-switch-when="rows">
+                <input class="form-control" ng-attr-id="{{mem}}"
+                       ng-model="model.widget[mem]" placeholder="1" type="number"/>
+            </div>
+
+            <div ng-switch-when="formatted">
+                <input type="checkbox"  ng-attr-id="{{mem}}" ng-model="model.widget[mem]"/>
+            </div>
+
             <div ng-switch-default>
                 <input type="text" class="form-control" ng-attr-id="{{mem}}"
-                       ng-model="model.widget[mem]" placeholder="{{model.type.toLowerCase()}} {{mem}}">
+                       ng-model="model.widget[mem]" placeholder="{{model.type.toLowerCase()}} {{mem}}"/>
             </div>
         </div>
     </div>
@@ -46,15 +56,16 @@
         </div>
 
         <a class="btn btn-block btn-primary" ng-click="model.uploadFile()">Upload Image</a>
-    </form>
 
-    <div class="container-fluid">
-        <div class="col-xs-4" ng-repeat="photo in model.photos">
-            <img ng-click="model.selectPhoto(photo)"
-                 ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"
-                 style="margin: 2px 0 2px 0;"/>
+        <div class="container-fluid">
+            <div ng-if="model.photos.length>0">Click to choose:</div>
+            <div class="col-xs-4" ng-repeat="photo in model.photos">
+                <img ng-click="model.selectPhoto(photo)"
+                     ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"
+                     style="margin: 2px 0 2px 0;"/>
+            </div>
         </div>
-    </div>
+    </form>
 
     <a class="btn btn-danger  btn-block" ng-click="model.delete()" style="margin-top: 5px;">Delete</a>
 </div>
