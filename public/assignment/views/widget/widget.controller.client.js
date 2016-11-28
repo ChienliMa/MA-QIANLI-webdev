@@ -76,7 +76,6 @@
                     ids.push(model.widgets[i]._id);
                 }
                 model.page.widgets = ids;
-                console.log(ids);
                 PageService.updatePage(model.pid, model.page);
             }
         };
