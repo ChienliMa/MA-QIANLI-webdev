@@ -33,7 +33,7 @@ module.exports = function(model) {
 
         updatePage : function(pageId, page){
             console.log(pageId, page);
-            return Page.findOneAndUpdate({_id : pageId}, page);
+            return Page.findOneAndUpdate({_id : pageId}, {$set: page});
         },
 
         deletePage : function(pageId){
