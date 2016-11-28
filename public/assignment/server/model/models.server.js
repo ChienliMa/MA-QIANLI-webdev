@@ -1,5 +1,6 @@
 module.exports = function () {
     var mongoose = require("mongoose");
+    mongoose.Promise = global.Promise;
     var connectionString = 'mongodb://127.0.0.1:27017/webdev';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
