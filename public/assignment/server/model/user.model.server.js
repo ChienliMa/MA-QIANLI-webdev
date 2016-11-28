@@ -20,8 +20,6 @@ module.exports = function(model){
         },
 
         updateUser : function(userId, user){
-            console.log(user);
-            console.log("LOL");
             return User.findOneAndUpdate({_id : userId}, {$set : user}, {upsert: true, new : true});
         },
 

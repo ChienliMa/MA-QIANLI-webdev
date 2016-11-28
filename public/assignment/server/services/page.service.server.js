@@ -17,7 +17,7 @@ module.exports = function (app, model) {
     function updatePage(req, res){
         model.Pages.updatePage(req.params.pid, req.body)
             .then(
-                function(){res.send(200);}
+                function(){res.sendStatus(200);}
             );
     }
 

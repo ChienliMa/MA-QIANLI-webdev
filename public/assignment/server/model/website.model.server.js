@@ -10,7 +10,6 @@ module.exports = function(model) {
 
         findWebsitesByUser : function(userId){
             return Website.find({_user : userId});
-
         },
 
         findWebsiteById : function(websiteId){
@@ -18,7 +17,7 @@ module.exports = function(model) {
         },
 
         updateWebsite : function(websiteId, website){
-            return Website.findOneAndUpdate({_id : websiteId}, website);
+            return Website.findOneAndUpdate({_id : websiteId}, {$set : website}, {upsert: true, new : true});
         },
 
         deleteWebsite : function(websiteId){
