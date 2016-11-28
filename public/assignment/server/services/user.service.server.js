@@ -52,9 +52,7 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         model.Users.updateUser(req.params.uid, req.body)
             .then(
-                function(rval){res.sendStatus(200);},
-                function(rval){res.status(404).send("user not found");
-                }
+                function(rval){res.sendStatus(200);}
             )
     }
 

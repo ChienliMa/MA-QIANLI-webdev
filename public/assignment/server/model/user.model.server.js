@@ -20,7 +20,7 @@ module.exports = function(model){
         },
 
         updateUser : function(userId, user){
-            return User.findOneAndUpdate({_id : userId}, user);
+            return User.findOneAndUpdate({_id : userId}, user, {upsert: true, new : true});
         },
 
         deleteUser : function(userId){
