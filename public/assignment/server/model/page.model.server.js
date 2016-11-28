@@ -32,8 +32,8 @@ module.exports = function(model) {
         },
 
         updatePage : function(pageId, page){
-            return Page.findOneAndUpdate({_id : pageId}, page)
-                .then(function(rval){res.sendStatus(200)});
+            console.log(pageId, page);
+            return Page.findOneAndUpdate({_id : pageId}, page);
         },
 
         deletePage : function(pageId){
