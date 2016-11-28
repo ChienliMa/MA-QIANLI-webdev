@@ -21,9 +21,7 @@ module.exports = function(model){
 
         updateUser : function(userId, user){
             delete user["_id"];
-            console.log();
-            console.log(user);
-            console.log();
+            delete user["__v"];
             return User.findOneAndUpdate({_id : userId}, {$set : user}, {upsert: true, new : true},function(error){console.log(error);});
         },
 
