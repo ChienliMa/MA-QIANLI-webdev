@@ -50,10 +50,8 @@ module.exports = function (app, model) {
 
     // updates the user in local users array whose _id matches the userId parameter
     function updateUser(req, res) {
-        model.Users.updateUser(req.params.uid, req.body)
-            .then(
-                function(rval){res.status(200).send(rval);}
-            )
+        model.Users.updateUser(req.params.uid, req.body);
+        res.sendStatus(200);
     }
 
     // removes the user whose _id matches the userId parameter

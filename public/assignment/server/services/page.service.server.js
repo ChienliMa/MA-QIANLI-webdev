@@ -15,10 +15,8 @@ module.exports = function (app, model) {
     }
 
     function updatePage(req, res){
-        model.Pages.updatePage(req.params.pid, req.body)
-            .then(
-                function(){res.sendStatus(200);}
-            );
+        model.Pages.updatePage(req.params.pid, req.body);
+        res.sendStatus(200);
     }
 
     function findPageById(req, res){

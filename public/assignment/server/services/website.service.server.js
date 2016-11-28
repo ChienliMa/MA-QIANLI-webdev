@@ -31,11 +31,8 @@ module.exports = function(app, model) {
     }
 
     function updateWebsite(req, res){
-        model.Websites.updateWebsite(req.params.wid, req.body)
-            .then(
-                function(){res.sendStatus(200);},
-                function(){res.status(404).send("website not found");}
-            );
+        model.Websites.updateWebsite(req.params.wid, req.body);
+        res.sendStatus(200);
     }
 
     function deleteWebsite(req, res) {

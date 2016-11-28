@@ -38,9 +38,8 @@ module.exports = function(app, model){
 
     //updates the widget in local widgets array whose _id matches the widgetId parameter
     function updateWidget(req, res){
-        model.Widgets.updateWidget(req.params.wgid, req.body)
-            .then(function(){res.sendStatus(200);})
-
+        model.Widgets.updateWidget(req.params.wgid, req.body);
+        res.sendStatus(200);
     }
 
     //removes the widget from local widgets array whose _id matches the widgetId parameter
