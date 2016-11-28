@@ -17,6 +17,7 @@ module.exports = function(model) {
         },
 
         updateWebsite : function(websiteId, website){
+            delete website["_id"];
             return Website.findOneAndUpdate({_id : websiteId}, {$set : website}, {upsert: true, new : true},function(error){console.log(error);});
         },
 
