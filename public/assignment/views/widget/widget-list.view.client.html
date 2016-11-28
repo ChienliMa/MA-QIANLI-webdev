@@ -62,7 +62,7 @@
                <iframe class="widget-youtube" ng-src="{{widget.url | trustAsRes}}" allowfullscreen></iframe>
            </div>
 
-           <div ng-if="widget.type == 'HTML'" ng-bind-html="widget.text | trustHTML">
+           <div ng-if="widget.type == 'HTML'" ng-bind-html="widget.html_text | trustHTML">
            </div>
 
            <div ng-if="widget.type == 'TEXT'">

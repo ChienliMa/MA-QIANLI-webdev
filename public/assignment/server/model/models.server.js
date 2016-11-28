@@ -1,6 +1,6 @@
 module.exports = function () {
     var mongoose = require("mongoose");
-    var connectionString = 'mongodb://127.0.0.1:27017/test';
+    var connectionString = 'mongodb://127.0.0.1:27017/webdev';
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -11,7 +11,6 @@ module.exports = function () {
     }
 
     mongoose.connect(connectionString);
-
 
     var model = {};
     model.Website = mongoose.model("Website", require("./website.schema.server")());
