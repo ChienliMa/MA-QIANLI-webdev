@@ -17,7 +17,7 @@ module.exports = function(model){
 
         updateWidget : function(widgetId, widget){
             widget.__v += 1;
-            return Widget.findOneAndUpdate({_id : widgetId}, {$set : widget}, {upsert: true, new : true});
+            return Widget.findOneAndUpdate({_id : widgetId}, {$set : widget}, {upsert: true, new : true},function(error){console.log(error);});
         },
 
         deleteWidget : function(widgetId){

@@ -32,7 +32,7 @@ module.exports = function(model) {
         },
 
         updatePage : function(pageId, page){
-            return Page.findOneAndUpdate({_id : pageId}, {$set: page}, {upsert: true, new : true});
+            return Page.findOneAndUpdate({_id : pageId}, {$set: page}, {upsert: true, new : true},function(error){console.log(error);});
         },
 
         deletePage : function(pageId){
