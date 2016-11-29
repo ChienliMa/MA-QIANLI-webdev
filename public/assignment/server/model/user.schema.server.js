@@ -9,7 +9,11 @@ module.exports = function () {
         email: String,
         phone: String,
         websites: [{type:mongoose.Schema.Types.ObjectId, ref: "Website"}],
-        dateCreated: Date
+        dateCreated: Date,
+        facebook: {
+            id:    String,
+            token: String
+        }
     });
 };
 

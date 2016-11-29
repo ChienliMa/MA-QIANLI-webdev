@@ -12,6 +12,21 @@
     // ================
     app.factory("UserService", function($http){
         return {
+            // login with session enabled
+            "login" : function (user) {
+                return $http.post("/api/login", user);
+            },
+
+            // logout the user session
+            "logout" : function (user) {
+                return $http.post("/api/logout");
+            },
+
+            // register with sesson
+            "register" : function (user) {
+                return $http.post("/api/register", user);
+            },
+
             // adds the user parameter instance to the local users array
             "createUser": function (user) {
                 return $http.post("/api/user", user);

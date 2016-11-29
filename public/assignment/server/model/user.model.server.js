@@ -28,6 +28,10 @@ module.exports = function(model){
         deleteUser : function(userId){
             Website.remove({_user:userId});
             return User.findOneAndRemove({_id : userId});
+        },
+
+        findUserByFacebookId : function(fid){
+            return User.findOne({'facebook.id': fid});
         }
     }
 };

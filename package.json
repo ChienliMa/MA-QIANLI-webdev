@@ -9,8 +9,14 @@
     "mongoose": "4.6.0",
     "multer" : "",
     "angular-file-upload" : "",
+    "cookie-parser": "^1.4.1",
+    "express-session": "^1.13.0",
+    "bcrypt-nodejs": "^0.0.3",
     "ng-sortable" : "",
-    "textangular" : ""
+    "textangular" : "",
+    "passport" : "",
+    "passport-local" : "",
+    "passport-facebook" : ""
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

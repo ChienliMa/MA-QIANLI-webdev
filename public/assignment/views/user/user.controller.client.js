@@ -7,26 +7,27 @@
     var myApp = angular.module('myApp');
 
     myApp.controller('LoginController', LoginController);
-    function LoginController($scope, $location, UserService) {
+    function LoginController($rootScope, $location, UserService) {
         this.username = "";
         this.password = "";
-        function success_handler(response){
-            var user = response.data;
-            if (user){
-                $location.path("/user/" + user._id);
-            } else {
-                alert("User not found");
-            }
-        };
 
         this.login = function(){
             UserService.findUserByCredentials(this.username, this.password)
-                .then(success_handler);
+                .then(
+                    function (response){
+                        var user = response.data;
+                        if (user){
+                            $rootScope.currentUser = user;
+                            $location.path("/user/" + user._id);
+                        } else {
+                            alert("User not found");
+                        }
+                    });
         };
-    };
+    }
 
     myApp.controller('RegisterController', RegisterController);
-    function RegisterController($scope, $location, UserService) {
+    function RegisterController($rootScope, $location, UserService) {
 
         this.username = "";
         this.password = "";
@@ -41,19 +42,33 @@
             UserService
                 .createUser({username:this.username, password:this.password})
                 .then(
-                    function(res){
+                    function(){
                         alert("Register succ");
                         $location.path("/login");
                     },
                     function(reason){
                         alert("Register fail:" + reason.toString());
+                    });
 
+            UserService
+                .register(user)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        alert("Register succ");
+                        $rootScope.currentUser = user;
+                        $location.url("/user/"+user._id);
+                    },
+                    function(reason){
+                        alert("Register fail:" + reason.toString());
                     });
         };
-    };
+
+
+    }
 
     myApp.controller('ProfileController', ProfileController);
-    function ProfileController($scope, $routeParams, $location, UserService){
+    function ProfileController($rootScope, $routeParams, $location, UserService){
         var vm = this;
         vm.user = {};
         UserService.findUserById($routeParams.uid)
@@ -74,6 +89,16 @@
 
         };
 
-    };
+        this.logout = function(){
+            UserService
+                .logout()
+                .then(
+                    function(res) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    })
+        }
+
+    }
 
 })(window.angular);
