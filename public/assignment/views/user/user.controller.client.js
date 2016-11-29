@@ -8,11 +8,10 @@
 
     myApp.controller('LoginController', LoginController);
     function LoginController($rootScope, $location, UserService) {
-        this.username = "";
-        this.password = "";
+        this.user = {username : "", password : ""};
 
         this.login = function(){
-            UserService.findUserByCredentials(this.username, this.password)
+            UserService.login(this.user)
                 .then(
                     function (response){
                         var user = response.data;
@@ -28,30 +27,28 @@
 
     myApp.controller('RegisterController', RegisterController);
     function RegisterController($rootScope, $location, UserService) {
-
-        this.username = "";
-        this.password = "";
+        this.user = {username: "", password:""};
         this.confirm = "";
 
         this.register = function(){
-            if(this.confirm != this.password){
+            if(this.confirm != this.user.password){
                 alert("Passwords didn't match.");
                 return;
             }
+            //
+            // UserService
+            //     .createUser({username:this.username, password:this.password})
+            //     .then(
+            //         function(){
+            //             alert("Register succ");
+            //             $location.path("/login");
+            //         },
+            //         function(reason){
+            //             alert("Register fail:" + reason.toString());
+            //         });
 
             UserService
-                .createUser({username:this.username, password:this.password})
-                .then(
-                    function(){
-                        alert("Register succ");
-                        $location.path("/login");
-                    },
-                    function(reason){
-                        alert("Register fail:" + reason.toString());
-                    });
-
-            UserService
-                .register(user)
+                .register(this.user)
                 .then(
                     function(response) {
                         var user = response.data;

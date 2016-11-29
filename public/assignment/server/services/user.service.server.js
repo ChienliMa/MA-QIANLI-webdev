@@ -70,8 +70,6 @@ module.exports = function (app, model) {
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
 
-
-
     // login with sesson
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.post('/api/logout', logout);
@@ -79,6 +77,7 @@ module.exports = function (app, model) {
     app.get ('/api/loggedin', isLoggedin);
 
     function login(req, res) {
+        console.log(req.body);
         var user = req.user;
         res.json(user);
     }
@@ -100,8 +99,10 @@ module.exports = function (app, model) {
             .then(
                 function(user) {
                     if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("in");
                         return callback(null, user);
                     } else {
+                        console.log("LOL");
                         return callback(null, false);
                     }
                 },
@@ -117,16 +118,14 @@ module.exports = function (app, model) {
         model.Users
             .createUser(user)
             .then(
-                function(user){
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
-                    }
+                function (user) {
+                    // there's a problem with -> req.login
+                    req.login(user, function (err) {
+                        if (err) {
+                            res.status(400).send(err);
+                        }
+                        res.status(200).send(user);
+                    });
                 });
     }
 
