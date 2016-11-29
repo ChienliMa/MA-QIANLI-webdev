@@ -95,14 +95,12 @@ module.exports = function (app, model) {
     passport.use(new LocalStrategy(localStrategy));
     function localStrategy(username, password, callback) {
         model.Users
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
-                function(user) {
+                function(user){
                     if(user && bcrypt.compareSync(password, user.password)) {
-                        console.log("in");
                         return callback(null, user);
                     } else {
-                        console.log("LOL");
                         return callback(null, false);
                     }
                 },
@@ -119,10 +117,9 @@ module.exports = function (app, model) {
             .createUser(user)
             .then(
                 function (user) {
-                    // there's a problem with -> req.login
                     req.login(user, function (err) {
                         if (err) {
-                            res.status(400).send(err);
+                            res.status(400).send("register fail");
                         }
                         res.status(200).send(user);
                     });
