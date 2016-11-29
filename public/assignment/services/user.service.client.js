@@ -24,7 +24,6 @@
 
             // register with sesson
             "register" : function (user) {
-                console.log("wtf");
                 return $http.post("/api/register", user);
             },
 

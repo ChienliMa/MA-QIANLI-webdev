@@ -77,13 +77,12 @@ module.exports = function (app, model) {
     app.get ('/api/loggedin', isLoggedin);
 
     function login(req, res) {
-        console.log(req.body);
         var user = req.user;
         res.json(user);
     }
 
     function logout(req, res) {
-        req.logOut();
+        req.logout();
         res.sendStatus(200);
     }
 
@@ -93,19 +92,19 @@ module.exports = function (app, model) {
 
     // passport login local strategy
     passport.use(new LocalStrategy(localStrategy));
-    function localStrategy(username, password, callback) {
+    function localStrategy(username, password, done) {
         model.Users
             .findUserByUsername(username)
             .then(
                 function(user){
                     if(user && bcrypt.compareSync(password, user.password)) {
-                        return callback(null, user);
+                        return done(null, user);
                     } else {
-                        return callback(null, false);
+                        return done(null, false);
                     }
                 },
                 function(err) {
-                    if (err) { return callback(err); }
+                    if (err) { return done(err); }
                 }
             );
     }

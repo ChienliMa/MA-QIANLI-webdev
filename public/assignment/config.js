@@ -8,7 +8,7 @@
         ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/register",  "user/register.view.client.html", "default-style.css", "RegisterController"],
-        ["/user/:uid",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
+        // ["/user/:uid",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
 
         ["/user/:uid/website",  "website/website-list.view.client.html", "website-style.css", "WebsiteListController"],
         ["/user/:uid/website/new",  "website/website-new.view.client.html", "website-style.css", "NewWebsiteController"],
@@ -40,14 +40,15 @@
                     css: "css/" + css});
         }
 
-        $routeProvider.when ("/user", {
+        $routeProvider.when ("/user/:uid", {
             templateUrl: "views/user/profile.view.client.html",
             controller: "ProfileController",
             controllerAs: "model",
-            resolve: { isLoggedin:
+            css: "css/website-style.css",
+            resolve: { checkLogin :
                         function($q, $timeout, $http, $location, $rootScope) {
                             var deferred = $q.defer();
-                            $http.get('/api/loggedin').success(function(user) {
+                            $http.get('/api/loggedin').then(function(user) {
                                 $rootScope.errorMessage = null;
                                 if (user != '0') {
                                     $rootScope.currentUser = user;
