@@ -8,7 +8,7 @@
         ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/register",  "user/register.view.client.html", "default-style.css", "RegisterController"],
-        // ["/user/:uid",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
+        ["/user",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
 
         ["/user/:uid/website",  "website/website-list.view.client.html", "website-style.css", "WebsiteListController"],
         ["/user/:uid/website/new",  "website/website-new.view.client.html", "website-style.css", "NewWebsiteController"],

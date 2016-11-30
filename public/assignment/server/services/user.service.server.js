@@ -18,8 +18,10 @@ module.exports = function (app, model) {
             findUserByCredentials(req, res);
         } else if (q.username) {
             findUserByUsername(req, res);
-        } else {
+        } else if(req.params.id != null){
             findUserById(req, res);
+        } else {
+            res.send(req.user);
         }
     }
 
@@ -130,21 +132,40 @@ module.exports = function (app, model) {
     // facebook callback api
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
+            successRedirect: '/assignment/#/user/',
+            failureRedirect: '/assignment/#/login'
         }));
 
     var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID || "id",
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET || "secret",
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || '/auth/facebook/callback'
+        clientID     : process.env.FACEBOOK_CLIENT_ID || '1162040763881333',
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET || '04512cc0ac548aa8e0bd9ae0fe4f7e57',
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done) {
         model.Users.findUserByFacebookId(profile.id)
+            .then(
+                function(user) {
+                    if (user == null) {
+                        var user  = {};
+                        user.firstName = profile.name.givenName || "";
+                        user.lastName = profile.name.familyName || "";
+                        user.facebook = {id : profile.id, token : token};
+                        return model.Users.createUser(user)
+                            .then(
+                                function(rval){
+                                    return done(null, rval);
+                                },
+                                function (err) {
+                                    return done(err, false);
+                                });
+                    } else {
+                        return done(null, user);
+                    }
+                }
+            );
     }
-
 
     // Session management.
     passport.serializeUser(serializeUser);

@@ -56,10 +56,18 @@
     function ProfileController($rootScope, $routeParams, $location, UserService){
         var vm = this;
         vm.user = {};
-        UserService.findUserById($routeParams.uid)
-            .then(function(res){
-                vm.user = res.data;
-            });
+
+        if ($routeParams.uid) {
+            UserService.findUserById($routeParams.uid)
+                .then(function (res) {
+                    vm.user = res.data;
+                });
+        } else {
+            UserService.findUser()
+                .then(function (res) {
+                    vm.user = res.data;
+                });
+        }
 
         this.update = function(){
             UserService.updateUser(this.user._id, this.user)

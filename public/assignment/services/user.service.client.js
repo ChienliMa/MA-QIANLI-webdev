@@ -32,6 +32,10 @@
                 return $http.post("/api/user", user);
             },
 
+            "findUser" : function () {
+                return $http.get("/api/user");
+            },
+
             // returns the user in local users array whose _id matches the userId parameter
             "findUserById": function (userId) {
                 return $http.get("/api/user/" + userId);

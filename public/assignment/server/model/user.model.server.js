@@ -31,7 +31,7 @@ module.exports = function(model){
         },
 
         findUserByFacebookId : function(fid){
-            return User.findOne({'facebook.id': fid});
+            return User.findOne({ 'facebook.id' : fid});
         }
     }
 };
