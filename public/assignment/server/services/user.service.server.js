@@ -125,25 +125,25 @@ module.exports = function (app, model) {
                 });
     }
 
-    // login with 3rd party api
-    // app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    // app.get('/auth/facebook/callback',
-    //     passport.authenticate('facebook', {
-    //         successRedirect: '/#/user',
-    //         failureRedirect: '/#/login'
-    //     }));
-    //
-    // var facebookConfig = {
-    //     clientID     : process.env.FACEBOOK_CLIENT_ID,
-    //     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    //     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    // };
-    // // passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-    //
-    // function facebookStrategy(token, refreshToken, profile, done) {
-    //     model.Users
-    //         .findUserByFacebookId(profile.id)
-    // }
+    // login with facebook party api
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    // facebook callback api
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
+        }));
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID || "id",
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET || "secret",
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || '/auth/facebook/callback'
+    };
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    function facebookStrategy(token, refreshToken, profile, done) {
+        model.Users.findUserByFacebookId(profile.id)
+    }
 
 
     // Session management.
