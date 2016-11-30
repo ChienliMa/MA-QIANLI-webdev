@@ -19,7 +19,7 @@
                             $rootScope.currentUser = user;
                             $location.path("/user/" + user._id);
                         } else {
-                            alert("User not found");
+                            alert("Invalid username & password pair.");
                         }
                     });
         };
@@ -35,33 +35,21 @@
                 alert("Passwords didn't match.");
                 return;
             }
-            //
-            // UserService
-            //     .createUser({username:this.username, password:this.password})
-            //     .then(
-            //         function(){
-            //             alert("Register succ");
-            //             $location.path("/login");
-            //         },
-            //         function(reason){
-            //             alert("Register fail:" + reason.toString());
-            //         });
 
             UserService
                 .register(this.user)
                 .then(
-                    function(response) {
-                        var user = response.data;
-                        alert("Register succ");
+                    function(res) {
+                        var user = res.data;
                         $rootScope.currentUser = user;
-                        $location.url("/user/"+user._id);
+                        $location.path("/user/"+user._id);
+                        alert("Register success. Now redirect to profile page.");
                     },
                     function(reason){
+                        $location.path("/register");
                         alert("Register fail:" + reason.toString());
                     });
         };
-
-
     }
 
     myApp.controller('ProfileController', ProfileController);
@@ -77,10 +65,10 @@
             UserService.updateUser(this.user._id, this.user)
                 .then(
                     function(res){
-                        alert("saved successffully");
+                        alert("update success");
                     },
                     function(res){
-                        alert("saved successffully");
+                        alert("update failed");
                     }
                 )
 
@@ -92,10 +80,9 @@
                 .then(
                     function(res) {
                         $rootScope.currentUser = null;
-                        $location.url("/");
+                        $location.path("/login");
                     })
         }
-
     }
 
 })(window.angular);

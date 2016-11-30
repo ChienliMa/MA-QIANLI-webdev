@@ -48,7 +48,8 @@
             resolve: { checkLogin :
                         function($q, $timeout, $http, $location, $rootScope) {
                             var deferred = $q.defer();
-                            $http.get('/api/loggedin').then(function(user) {
+                            $http.get('/api/loggedin').then(function(res) {
+                                var user = res.data;
                                 $rootScope.errorMessage = null;
                                 if (user != '0') {
                                     $rootScope.currentUser = user;
