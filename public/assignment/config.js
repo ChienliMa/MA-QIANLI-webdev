@@ -8,7 +8,7 @@
         ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
         ["/register",  "user/register.view.client.html", "default-style.css", "RegisterController"],
-        ["/user",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
+        // ["/user",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
 
         ["/user/:uid/website",  "website/website-list.view.client.html", "website-style.css", "WebsiteListController"],
         ["/user/:uid/website/new",  "website/website-new.view.client.html", "website-style.css", "NewWebsiteController"],
@@ -62,6 +62,30 @@
                             return deferred.promise;
                         }
                     }
+        });
+
+        $routeProvider.when ("/user", {
+            templateUrl: "views/user/profile.view.client.html",
+            controller: "ProfileController",
+            controllerAs: "model",
+            css: "css/website-style.css",
+            resolve: { checkLogin :
+                function($q, $timeout, $http, $location, $rootScope) {
+                    var deferred = $q.defer();
+                    $http.get('/api/loggedin').then(function(res) {
+                        var user = res.data;
+                        $rootScope.errorMessage = null;
+                        if (user != '0') {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        } else {
+                            deferred.reject();
+                            $location.url('/');
+                        }
+                    });
+                    return deferred.promise;
+                }
+            }
         });
 
         $routeProvider.otherwise("/login");
