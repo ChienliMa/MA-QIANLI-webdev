@@ -139,7 +139,7 @@ module.exports = function (app, model) {
     var facebookConfig = {
         clientID     : process.env.FACEBOOK_CLIENT_ID || '1162040763881333',
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET || '04512cc0ac548aa8e0bd9ae0fe4f7e57',
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback'
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://webdev-chienlima.rhcloud.com/auth/facebook/callback'
     };
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
