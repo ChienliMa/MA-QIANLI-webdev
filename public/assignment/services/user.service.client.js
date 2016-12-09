@@ -14,17 +14,17 @@
         return {
             // login with session enabled
             "login" : function (user) {
-                return $http.post("/api/login", user);
+                return $http.post("/auth/login", user);
             },
 
             // logout the user session
             "logout" : function (user) {
-                return $http.post("/api/logout");
+                return $http.post("/auth/logout");
             },
 
             // register with sesson
             "register" : function (user) {
-                return $http.post("/api/register", user);
+                return $http.post("/auth/register", user);
             },
 
             // adds the user parameter instance to the local users array

@@ -73,10 +73,10 @@ module.exports = function (app, model) {
     var FacebookStrategy = require('passport-facebook').Strategy;
 
     // login with sesson
-    app.post  ('/api/login', passport.authenticate('local'), login);
-    app.post('/api/logout', logout);
-    app.post ('/api/register', register);
-    app.get ('/api/loggedin', isLoggedin);
+    app.post  ('/auth/login', passport.authenticate('local'), login);
+    app.post('/auth/logout', logout);
+    app.post ('/auth/register', register);
+    app.get ('/auth/loggedin', isLoggedin);
 
     function login(req, res) {
         var user = req.user;

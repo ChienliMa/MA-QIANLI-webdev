@@ -5,10 +5,10 @@
     angular.module("myApp").config(Config);
 
     var routes = [
-        ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
-        ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
-        ["/register",  "user/register.view.client.html", "default-style.css", "RegisterController"],
-        // ["/user",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
+        // ["/login",  "user/login.view.client.html", "default-style.css", "LoginController"],
+        // ["/default",    "user/login.view.client.html", "default-style.css", "LoginController"],
+        ["/user",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
+        ["/user/:uid",  "user/profile.view.client.html", "website-style.css", "ProfileController"],
 
         ["/user/:uid/website",  "website/website-list.view.client.html", "website-style.css", "WebsiteListController"],
         ["/user/:uid/website/new",  "website/website-new.view.client.html", "website-style.css", "NewWebsiteController"],
@@ -37,18 +37,11 @@
                 {templateUrl: "views/" + view,
                     controller: ctler,
                     controllerAs: "model",
-                    css: "css/" + css});
-        }
-
-        $routeProvider.when ("/user/:uid", {
-            templateUrl: "views/user/profile.view.client.html",
-            controller: "ProfileController",
-            controllerAs: "model",
-            css: "css/website-style.css",
-            resolve: { checkLogin :
-                        function($q, $timeout, $http, $location, $rootScope) {
+                    css: "css/" + css,
+                    resolve: {
+                        checkLogin: function ($q, $timeout, $http, $location, $rootScope) {
                             var deferred = $q.defer();
-                            $http.get('/api/loggedin').then(function(res) {
+                            $http.get('/auth/loggedin').then(function (res) {
                                 var user = res.data;
                                 $rootScope.errorMessage = null;
                                 if (user != '0') {
@@ -60,32 +53,25 @@
                                 }
                             });
                             return deferred.promise;
-                        }
-                    }
-        });
-
-        $routeProvider.when ("/user", {
-            templateUrl: "views/user/profile.view.client.html",
-            controller: "ProfileController",
-            controllerAs: "model",
-            css: "css/website-style.css",
-            resolve: { checkLogin :
-                function($q, $timeout, $http, $location, $rootScope) {
-                    var deferred = $q.defer();
-                    $http.get('/api/loggedin').then(function(res) {
-                        var user = res.data;
-                        $rootScope.errorMessage = null;
-                        if (user != '0') {
-                            $rootScope.currentUser = user;
-                            deferred.resolve();
-                        } else {
-                            deferred.reject();
-                            $location.url('/');
+                            }
                         }
                     });
-                    return deferred.promise;
-                }
-            }
+        }
+
+
+        // no need to check login when login an register
+        $routeProvider.when ("/login", {
+            templateUrl: "views/user/login.view.client.html",
+            controller: "LoginController",
+            controllerAs: "model",
+            css: "css/default-style.css"
+        });
+
+        $routeProvider.when ("/register", {
+            templateUrl: "views/user/register.view.client.html",
+            controller: "RegisterController",
+            controllerAs: "model",
+            css: "css/default-style.css"
         });
 
         $routeProvider.otherwise("/login");
